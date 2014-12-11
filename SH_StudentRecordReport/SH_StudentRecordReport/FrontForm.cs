@@ -182,6 +182,16 @@ namespace SH_StudentRecordReport
 
         #endregion
 
+        /// <summary>
+        /// 判斷是否使用原始成績，True 表示使用原始成績
+        /// </summary>
+        private bool _ChkSScore = false;
+        public bool ChkSScore
+        {
+            get { return _ChkSScore; }
+        }
+
+
         private Dictionary<string, string> _tagList = new Dictionary<string, string>();
         public Dictionary<string, string> TagList
         {
@@ -263,7 +273,7 @@ namespace SH_StudentRecordReport
 
                 _optSaveFileType = 0;
                 int.TryParse(config["SaveFileType"], out _optSaveFileType);
-
+                
                 switch (_optSaveFileType)
                 {
                     case 1:
@@ -284,6 +294,10 @@ namespace SH_StudentRecordReport
                 _sign_failed = config["FailedSign"];
                 _sign_school_year_adjust = config["SchoolYearAdjustSign"];
                 _sign_manual_adjust = config["ManualAdjustSign"];
+
+                // 檢查是否使用原始成績
+                _ChkSScore = false;
+                bool.TryParse(config["ChkSScore"], out _ChkSScore);
 
                 //string xml = config["Tags"];
 
@@ -418,7 +432,7 @@ namespace SH_StudentRecordReport
                 _sign_school_year_adjust,
                 _sign_manual_adjust,
                 _sign_failed,
-                moralScoreOption);
+                moralScoreOption,_ChkSScore);
 
             if (form.ShowDialog() == DialogResult.OK)
             {

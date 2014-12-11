@@ -37,7 +37,7 @@ namespace SH_StudentRecordReport
 
         private int textScoreOption = 0;
 
-        public TemplateConfigForm(int useTemplateNumber, byte[] buffer1, byte[] buffer2, byte[] buffer3, int[] print, bool over100, string coreSubjectSign, string coreCourseSign, string resitSign, string retakeSign, string schoolYearAdjustSign, string manualAdjustSign, string failedSign, int moralScoreOption)
+        public TemplateConfigForm(int useTemplateNumber, byte[] buffer1, byte[] buffer2, byte[] buffer3, int[] print, bool over100, string coreSubjectSign, string coreCourseSign, string resitSign, string retakeSign, string schoolYearAdjustSign, string manualAdjustSign, string failedSign, int moralScoreOption,bool chkScoreType)
         {
             InitializeComponent();
 
@@ -96,6 +96,7 @@ namespace SH_StudentRecordReport
             txtFailedSign.Text = failedSign;
             txtSchoolYearAdjustSign.Text = schoolYearAdjustSign;
             txtManualAdjustSign.Text = manualAdjustSign;
+            chkSScore.Checked = chkScoreType;
         }
 
         //  檢視「高級中學用成績證明書預設範本 (含學年成績)」
@@ -367,7 +368,8 @@ namespace SH_StudentRecordReport
             config["ManualAdjustSign"] = txtManualAdjustSign.Text;
             config["FailedSign"] = txtFailedSign.Text;
             config["MoralScoreOption"] = textScoreOption.ToString();
-
+            // 檢查使用原始成績
+            config["ChkSScore"] = chkSScore.Checked.ToString();
             config.Save();
 
             #endregion

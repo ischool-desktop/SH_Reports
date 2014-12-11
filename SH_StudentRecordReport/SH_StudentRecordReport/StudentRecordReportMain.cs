@@ -99,6 +99,7 @@ namespace SH_StudentRecordReport
             string failedSign = form.SignFailed;
             string schoolYearAdjustSign = form.SignSchoolYearAdjust;
             string manualAdjustSign = form.SignManualAdjust;
+            bool ChkSScore = form.ChkSScore;
 
             string dataType = string.Empty;
 
@@ -124,7 +125,8 @@ namespace SH_StudentRecordReport
                 dataPool,
                 saveFileType,
                 moralScoreType,
-                students
+                students,
+                ChkSScore
             };
         }
 

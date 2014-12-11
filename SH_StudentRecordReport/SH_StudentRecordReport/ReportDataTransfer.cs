@@ -32,6 +32,7 @@ namespace SH_StudentRecordReport
         DataPool dataPool;              //  所有學生的資料
         int reportType;              //  成績證明書存檔選項：1-->每班一個檔案。2-->每個學生一個檔案。3-->每100個學生一個檔案。
         int textScoreOption;            //  文字評量選項：1-->導師評語。2-->文字評量。3-->2者皆要
+        bool ChkSScore = false;
         IEnumerable<SHStudentRecord> students;
 
         public List<DataSet> TransferFormat(object[] bgwObject)
@@ -54,6 +55,7 @@ namespace SH_StudentRecordReport
             dataPool = (DataPool)bgwObject[15];
             reportType = (int)bgwObject[16];
             textScoreOption = (int)bgwObject[17];
+            ChkSScore = (bool)bgwObject[19];
             students = (IEnumerable<SHStudentRecord>)bgwObject[18];
 
             return Transfer();
@@ -115,102 +117,115 @@ namespace SH_StudentRecordReport
             List<string> ScoreBetter = new List<string>();
             // 未取得學分標示
             List<string> ScoreNoPass = new List<string>();
-            foreach (SHSubjectSemesterScoreInfo ss in pSHSubjectSemesterScoreInfo)
-            {
-                //  不計學分不列舉，此邏輯為 ischool 之現況(收集資料時已篩汰)
-                //  不評分要列舉
-                //  所有分項要列舉(不判斷科目是否屬於「學業」之分項)
-
-                //if (ss.NotIncludedInCredit.HasValue && ss.NotIncludedInCredit.Value)
-                //    continue;
-
-                decimal? scoreBetter = null;
-                string scoreSign = string.Empty;
-                string scoreWithSign = string.Empty;
-
-                if (ss.Score.HasValue)
-                    scoreBetter = ss.Score.Value;
-
-                //  手動調整成績
-                if (ss.ManualScore.HasValue)
+       
+                foreach (SHSubjectSemesterScoreInfo ss in pSHSubjectSemesterScoreInfo)
                 {
-                    if (scoreBetter.HasValue)
-                    {
-                        if (ss.ManualScore.Value > scoreBetter.Value)
+                    //  不計學分不列舉，此邏輯為 ischool 之現況(收集資料時已篩汰)
+                    //  不評分要列舉
+                    //  所有分項要列舉(不判斷科目是否屬於「學業」之分項)
+
+                    //if (ss.NotIncludedInCredit.HasValue && ss.NotIncludedInCredit.Value)
+                    //    continue;
+
+                    decimal? scoreBetter = null;
+                    string scoreSign = string.Empty;
+                    string scoreWithSign = string.Empty;
+
+                    if (ss.Score.HasValue)
+                        scoreBetter = ss.Score.Value;
+
+                        //  手動調整成績
+                        if (ss.ManualScore.HasValue)
                         {
-                            scoreBetter = ss.ManualScore.Value;
-                            scoreSign = manualAdjustSign;
+                            if (scoreBetter.HasValue)
+                            {
+                                if (ss.ManualScore.Value > scoreBetter.Value)
+                                {
+                                    scoreBetter = ss.ManualScore.Value;
+                                    scoreSign = manualAdjustSign;
+                                }
+                            }
+                            else
+                            {
+                                scoreBetter = ss.ManualScore.Value;
+                                scoreSign = manualAdjustSign;
+                            }
                         }
-                    }
-                    else
-                    {
-                        scoreBetter = ss.ManualScore.Value;
-                        scoreSign = manualAdjustSign;
-                    }
-                }
 
-                //  學年擇優成績
-                if (ss.SchoolYearAdjustScore.HasValue)
-                {
-                    if (scoreBetter.HasValue)
-                    {
-                        if (ss.SchoolYearAdjustScore.Value > scoreBetter.Value)
+                        //  學年擇優成績
+                        if (ss.SchoolYearAdjustScore.HasValue)
                         {
-                            scoreBetter = ss.SchoolYearAdjustScore.Value;
-                            scoreSign = schoolYearAdjustSign;
+                            if (scoreBetter.HasValue)
+                            {
+                                if (ss.SchoolYearAdjustScore.Value > scoreBetter.Value)
+                                {
+                                    scoreBetter = ss.SchoolYearAdjustScore.Value;
+                                    scoreSign = schoolYearAdjustSign;
+                                }
+                            }
+                            else
+                            {
+                                scoreBetter = ss.SchoolYearAdjustScore.Value;
+                                scoreSign = schoolYearAdjustSign;
+                            }
                         }
-                    }
-                    else
-                    {
-                        scoreBetter = ss.SchoolYearAdjustScore.Value;
-                        scoreSign = schoolYearAdjustSign;
-                    }
-                }
 
-                //  補考成績
-                if (ss.ReExamScore.HasValue)
-                {
-                    if (scoreBetter.HasValue)
-                    {
-                        if (ss.ReExamScore.Value > scoreBetter.Value)
+                        //  補考成績
+                        if (ss.ReExamScore.HasValue)
                         {
-                            scoreBetter = ss.ReExamScore.Value;
-                            scoreSign = resitSign;
+                            if (scoreBetter.HasValue)
+                            {
+                                if (ss.ReExamScore.Value > scoreBetter.Value)
+                                {
+                                    scoreBetter = ss.ReExamScore.Value;
+                                    scoreSign = resitSign;
+                                }
+                            }
+                            else
+                            {
+                                scoreBetter = ss.ReExamScore.Value;
+                                scoreSign = resitSign;
+                            }
                         }
-                    }
-                    else
-                    {
-                        scoreBetter = ss.ReExamScore.Value;
-                        scoreSign = resitSign;
-                    }
+
+                        scoreWithSign = scoreSign + (scoreBetter.HasValue ? scoreBetter.Value.ToString() : "");
+
+                        //  不及格標示
+                        if (ss.Pass.HasValue)
+                        {
+                            if (!ss.Pass.Value)
+                                ScoreNoPass.Add(failedSign);
+                            else
+                                ScoreNoPass.Add("");
+                        }
+                        else
+                            ScoreNoPass.Add("");
+
+                        //  重修成績
+                        if (ss.ReCourseScore.HasValue)
+                            scoreWithSign += retakeSign + ss.ReCourseScore.Value;
+
+                    // 使用原始成績
+                        if (ChkSScore)
+                        {
+                            if (ss.Score.HasValue)
+                            {
+                                scoreBetter = ss.Score.Value;
+                                scoreWithSign = ss.Score.Value.ToString();
+                            }
+                        }                    
+
+                    ScoreWithSign.Add(scoreWithSign);
+                    ScoreBetter.Add(scoreBetter.HasValue ? scoreBetter.Value.ToString() : string.Empty);
                 }
 
-                scoreWithSign = scoreSign + (scoreBetter.HasValue ? scoreBetter.Value.ToString() : "");
-
-                //  不及格標示
-                if (ss.Pass.HasValue)
-                {
-                    if (!ss.Pass.Value)
-                        ScoreNoPass.Add(failedSign);
-                    else
-                        ScoreNoPass.Add("");
-                }
-                else
-                    ScoreNoPass.Add("");
-
-                //  重修成績
-                if (ss.ReCourseScore.HasValue)
-                    scoreWithSign += retakeSign + ss.ReCourseScore.Value;
-
-                ScoreWithSign.Add(scoreWithSign);
-                ScoreBetter.Add(scoreBetter.HasValue ? scoreBetter.Value.ToString() : string.Empty);
-            }
-            // 成績加符號標示
-            schoolRollTable.Tables.Add(ScoreWithSign.ToDataTable(prefix + "ScoreWithSign", "成績加符號標示"));
-            // 擇優成績
-            schoolRollTable.Tables.Add(ScoreBetter.ToDataTable(prefix + "ScoreBetter", "擇優成績"));
-            // 未取得學分標示
-            schoolRollTable.Tables.Add(ScoreNoPass.ToDataTable(prefix + "ScoreNoPass", "未取得學分標示"));
+                // 成績加符號標示
+                schoolRollTable.Tables.Add(ScoreWithSign.ToDataTable(prefix + "ScoreWithSign", "成績加符號標示"));
+                // 擇優成績
+                schoolRollTable.Tables.Add(ScoreBetter.ToDataTable(prefix + "ScoreBetter", "擇優成績"));
+                // 未取得學分標示
+                schoolRollTable.Tables.Add(ScoreNoPass.ToDataTable(prefix + "ScoreNoPass", "未取得學分標示"));
+       
         }
 
         //  科目學年成績資料

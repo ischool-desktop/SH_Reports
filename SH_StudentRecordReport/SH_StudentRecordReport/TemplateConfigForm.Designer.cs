@@ -84,6 +84,7 @@
             this.comboItem2 = new DevComponents.Editors.ComboItem();
             this.comboItem3 = new DevComponents.Editors.ComboItem();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
+            this.chkSScore = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.groupPanel1.SuspendLayout();
             this.groupPanel5.SuspendLayout();
             this.groupPanel3.SuspendLayout();
@@ -990,11 +991,29 @@
             this.labelX11.TextAlignment = System.Drawing.StringAlignment.Center;
             this.labelX11.WordWrap = true;
             // 
+            // chkSScore
+            // 
+            this.chkSScore.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chkSScore.BackgroundStyle.Class = "";
+            this.chkSScore.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chkSScore.Checked = true;
+            this.chkSScore.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSScore.CheckValue = "Y";
+            this.chkSScore.Location = new System.Drawing.Point(275, 370);
+            this.chkSScore.Name = "chkSScore";
+            this.chkSScore.Size = new System.Drawing.Size(109, 23);
+            this.chkSScore.TabIndex = 27;
+            this.chkSScore.Text = "原始成績";
+            // 
             // TemplateConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 406);
+            this.Controls.Add(this.chkSScore);
             this.Controls.Add(this.groupPanel4);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.labelX11);
@@ -1077,5 +1096,6 @@
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel7;
         private DevComponents.DotNetBar.Controls.CheckBoxX chkTextScore;
         private DevComponents.DotNetBar.Controls.CheckBoxX chkClassTeacher;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chkSScore;
     }
 }
