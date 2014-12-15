@@ -213,9 +213,7 @@ namespace SH_StudentRecordReport
 
             LoadPreference();
 
-            textBoxX1.Text = this.Text1;
-            textBoxX2.Text = this.Text2;
-
+         
             //string path = Path.Combine(Application.StartupPath, @"Reports\成績證明書");
             //if (!Directory.Exists(path))
             //    Directory.CreateDirectory(path);
@@ -378,9 +376,7 @@ namespace SH_StudentRecordReport
                 _text3 = folder.SelectedPath;
             }
 
-            _text1 = textBoxX1.Text;
-            _text2 = textBoxX2.Text;
-
+    
             SavePreference();
 
             if (Directory.Exists(_text3))
@@ -391,28 +387,7 @@ namespace SH_StudentRecordReport
             }
         }
 
-        private void textBoxX2_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(textBoxX2.Text))
-            {
-                _error2 = false;
-                int a = 0;
-
-                foreach (char var in textBoxX2.Text.ToCharArray())
-                {
-                    if (!int.TryParse(var.ToString(), out a))
-                    {
-                        _error2 = true;
-                        break;
-                    }
-                }
-
-                if (_error2)
-                    errorProvider2.SetError(textBoxX2, "格式為數字");
-                else
-                    errorProvider2.Clear();
-            }
-        }
+       
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -475,6 +450,11 @@ namespace SH_StudentRecordReport
             //getOut = false;
 
             _optSaveFileType = Convert.ToInt32(((System.Windows.Forms.RadioButton)sender).Name.Substring((((System.Windows.Forms.RadioButton)sender).Name.Length - 1), 1));
+        }
+
+        private void FrontForm_Load(object sender, EventArgs e)
+        {
+            this.MaximumSize = this.MinimumSize = this.Size;
         }
 
         //private void ChangePath_Click(object sender, EventArgs e)

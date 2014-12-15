@@ -70,19 +70,6 @@
             this.txtFailedSign = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtCoreSubjectSign = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.cboRecvPhone = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem7 = new DevComponents.Editors.ComboItem();
-            this.comboItem8 = new DevComponents.Editors.ComboItem();
-            this.cboRecvAddress = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem4 = new DevComponents.Editors.ComboItem();
-            this.comboItem5 = new DevComponents.Editors.ComboItem();
-            this.cboRecvIdentity = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem1 = new DevComponents.Editors.ComboItem();
-            this.comboItem2 = new DevComponents.Editors.ComboItem();
-            this.comboItem3 = new DevComponents.Editors.ComboItem();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
             this.chkSScore = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.groupPanel1.SuspendLayout();
@@ -525,6 +512,7 @@
             this.groupPanel4.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel4.Controls.Add(this.chkSScore);
             this.groupPanel4.Controls.Add(this.groupPanel7);
             this.groupPanel4.Controls.Add(this.txtCoreCourseSign);
             this.groupPanel4.Controls.Add(this.labelX10);
@@ -540,12 +528,6 @@
             this.groupPanel4.Controls.Add(this.txtFailedSign);
             this.groupPanel4.Controls.Add(this.txtCoreSubjectSign);
             this.groupPanel4.Controls.Add(this.labelX4);
-            this.groupPanel4.Controls.Add(this.labelX3);
-            this.groupPanel4.Controls.Add(this.labelX2);
-            this.groupPanel4.Controls.Add(this.labelX1);
-            this.groupPanel4.Controls.Add(this.cboRecvPhone);
-            this.groupPanel4.Controls.Add(this.cboRecvAddress);
-            this.groupPanel4.Controls.Add(this.cboRecvIdentity);
             this.groupPanel4.Location = new System.Drawing.Point(258, 7);
             this.groupPanel4.Name = "groupPanel4";
             this.groupPanel4.Size = new System.Drawing.Size(405, 320);
@@ -854,125 +836,6 @@
             this.labelX4.TextAlignment = System.Drawing.StringAlignment.Far;
             this.labelX4.WordWrap = true;
             // 
-            // labelX3
-            // 
-            this.labelX3.AutoSize = true;
-            this.labelX3.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.Class = "";
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(14, 126);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(34, 21);
-            this.labelX3.TabIndex = 1;
-            this.labelX3.Text = "電話";
-            // 
-            // labelX2
-            // 
-            this.labelX2.AutoSize = true;
-            this.labelX2.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(14, 71);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(34, 21);
-            this.labelX2.TabIndex = 1;
-            this.labelX2.Text = "地址";
-            // 
-            // labelX1
-            // 
-            this.labelX1.AutoSize = true;
-            this.labelX1.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(14, 16);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(34, 21);
-            this.labelX1.TabIndex = 1;
-            this.labelX1.Text = "家長";
-            // 
-            // cboRecvPhone
-            // 
-            this.cboRecvPhone.DisplayMember = "Text";
-            this.cboRecvPhone.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboRecvPhone.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRecvPhone.FormattingEnabled = true;
-            this.cboRecvPhone.ItemHeight = 19;
-            this.cboRecvPhone.Items.AddRange(new object[] {
-            this.comboItem7,
-            this.comboItem8});
-            this.cboRecvPhone.Location = new System.Drawing.Point(57, 123);
-            this.cboRecvPhone.Name = "cboRecvPhone";
-            this.cboRecvPhone.Size = new System.Drawing.Size(121, 25);
-            this.cboRecvPhone.TabIndex = 11;
-            // 
-            // comboItem7
-            // 
-            this.comboItem7.Text = "戶籍電話";
-            // 
-            // comboItem8
-            // 
-            this.comboItem8.Text = "聯絡電話";
-            // 
-            // cboRecvAddress
-            // 
-            this.cboRecvAddress.DisplayMember = "Text";
-            this.cboRecvAddress.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboRecvAddress.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRecvAddress.FormattingEnabled = true;
-            this.cboRecvAddress.ItemHeight = 19;
-            this.cboRecvAddress.Items.AddRange(new object[] {
-            this.comboItem4,
-            this.comboItem5});
-            this.cboRecvAddress.Location = new System.Drawing.Point(57, 68);
-            this.cboRecvAddress.Name = "cboRecvAddress";
-            this.cboRecvAddress.Size = new System.Drawing.Size(121, 25);
-            this.cboRecvAddress.TabIndex = 10;
-            // 
-            // comboItem4
-            // 
-            this.comboItem4.Text = "戶籍地址";
-            // 
-            // comboItem5
-            // 
-            this.comboItem5.Text = "聯絡地址";
-            // 
-            // cboRecvIdentity
-            // 
-            this.cboRecvIdentity.DisplayMember = "Text";
-            this.cboRecvIdentity.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboRecvIdentity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRecvIdentity.FormattingEnabled = true;
-            this.cboRecvIdentity.ItemHeight = 19;
-            this.cboRecvIdentity.Items.AddRange(new object[] {
-            this.comboItem1,
-            this.comboItem2,
-            this.comboItem3});
-            this.cboRecvIdentity.Location = new System.Drawing.Point(57, 13);
-            this.cboRecvIdentity.Name = "cboRecvIdentity";
-            this.cboRecvIdentity.Size = new System.Drawing.Size(121, 25);
-            this.cboRecvIdentity.TabIndex = 9;
-            // 
-            // comboItem1
-            // 
-            this.comboItem1.Text = "監護人";
-            // 
-            // comboItem2
-            // 
-            this.comboItem2.Text = "父親";
-            // 
-            // comboItem3
-            // 
-            this.comboItem3.Text = "母親";
-            // 
             // labelX11
             // 
             this.labelX11.BackColor = System.Drawing.Color.Transparent;
@@ -993,6 +856,7 @@
             // 
             // chkSScore
             // 
+            this.chkSScore.AutoSize = true;
             this.chkSScore.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
@@ -1002,18 +866,17 @@
             this.chkSScore.Checked = true;
             this.chkSScore.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSScore.CheckValue = "Y";
-            this.chkSScore.Location = new System.Drawing.Point(275, 370);
+            this.chkSScore.Location = new System.Drawing.Point(14, 16);
             this.chkSScore.Name = "chkSScore";
-            this.chkSScore.Size = new System.Drawing.Size(109, 23);
-            this.chkSScore.TabIndex = 27;
-            this.chkSScore.Text = "原始成績";
+            this.chkSScore.Size = new System.Drawing.Size(177, 21);
+            this.chkSScore.TabIndex = 28;
+            this.chkSScore.Text = "科目、學業 使用原始成績";
             // 
             // TemplateConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 406);
-            this.Controls.Add(this.chkSScore);
             this.Controls.Add(this.groupPanel4);
             this.Controls.Add(this.groupPanel1);
             this.Controls.Add(this.labelX11);
@@ -1052,19 +915,6 @@
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel4;
-        private DevComponents.DotNetBar.LabelX labelX3;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cboRecvPhone;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cboRecvAddress;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cboRecvIdentity;
-        private DevComponents.Editors.ComboItem comboItem7;
-        private DevComponents.Editors.ComboItem comboItem8;
-        private DevComponents.Editors.ComboItem comboItem4;
-        private DevComponents.Editors.ComboItem comboItem5;
-        private DevComponents.Editors.ComboItem comboItem1;
-        private DevComponents.Editors.ComboItem comboItem2;
-        private DevComponents.Editors.ComboItem comboItem3;
         private DevComponents.DotNetBar.Controls.TextBoxX txtCoreSubjectSign;
         private DevComponents.DotNetBar.LabelX labelX4;
         private DevComponents.DotNetBar.LabelX labelX5;

@@ -655,58 +655,123 @@ namespace SH_StudentRecordReport
                 int yIndex = 0;
                 int sIndex = 0;
 
-                foreach (SHSemesterEntryScoreRecord sr in _SHSemesterEntryScoreRecords)
+
+                // 檢查是否使用原始成績
+                if (ChkSScore)
                 {
-                    yIndex = sr.GradeYear;
-                    if (!_SHSemesterEntryScoreHistory.ContainsKey(yIndex))
-                        continue;
-
-                    if (_SHSemesterEntryScoreHistory[yIndex].Where(x => (x.Key == sr.SchoolYear && x.Value == sr.Semester)).Count() == 0)
-                        continue;
-
-                    sIndex = sr.Semester;
-
-                    prefix = "Y" + yIndex + "S" + sIndex;
-
-                    // 學業
-                    if (sr.Scores.ContainsKey("學業"))
+                    #region 學業成績(原始)
+                    foreach (SHSemesterEntryScoreRecord sr in _SHSemesterEntryScoreRecords)
                     {
-                        schoolRollTable.Tables.Add(sr.Scores["學業"].ToDataTable(prefix + "AcademicScore", "學業成績"));
+                        yIndex = sr.GradeYear;
+                        if (!_SHSemesterEntryScoreHistory.ContainsKey(yIndex))
+                            continue;
 
-                        SHRankingInfo rank = sr.ClassRating.Find(x => x.Name.Equals("學業"));
-                        schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicClassRank", "學業成績班級排名"));
+                        if (_SHSemesterEntryScoreHistory[yIndex].Where(x => (x.Key == sr.SchoolYear && x.Value == sr.Semester)).Count() == 0)
+                            continue;
 
-                        rank = sr.DeptRating.Find(x => x.Name.Equals("學業"));
-                        schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicDepartmentRank", "學業成績科排名"));
+                        sIndex = sr.Semester;
 
-                        rank = sr.YearRating.Find(x => x.Name.Equals("學業"));
-                        schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicGradeRank", "學業成績年級排名"));
+                        prefix = "Y" + yIndex + "S" + sIndex;
+
+                        // 學業(原始)
+                        if (sr.Scores.ContainsKey("學業(原始)"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["學業(原始)"].ToDataTable(prefix + "AcademicScore", "學業(原始)成績"));
+
+                            SHRankingInfo rank = sr.ClassRating.Find(x => x.Name.Equals("學業(原始)"));
+                            schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicClassRank", "學業(原始)成績班級排名"));
+
+                            rank = sr.DeptRating.Find(x => x.Name.Equals("學業(原始)"));
+                            schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicDepartmentRank", "學業(原始)成績科排名"));
+
+                            rank = sr.YearRating.Find(x => x.Name.Equals("學業(原始)"));
+                            schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicGradeRank", "學業(原始)成績年級排名"));
+                        }
+                        //  體育(原始)
+                        if (sr.Scores.ContainsKey("體育(原始)"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["體育(原始)"].ToDataTable(prefix + "PhysicalScore", "體育(原始)成績"));
+                        }
+                        //  健康與護理(原始)
+                        if (sr.Scores.ContainsKey("健康與護理(原始)"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["健康與護理(原始)"].ToDataTable(prefix + "HealthScore", "健康與護理(原始)成績"));
+                        }
+                        //  國防通識(原始)
+                        if (sr.Scores.ContainsKey("國防通識(原始)"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["國防通識(原始)"].ToDataTable(prefix + "NationalDefenseScore", "國防通識(原始)成績"));
+                        }
+                        //  實習科目(原始)
+                        if (sr.Scores.ContainsKey("實習科目(原始)"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["實習科目(原始)"].ToDataTable(prefix + "PracticeScore", "實習科目(原始)成績"));
+                        }
+                        //  專業科目(原始)
+                        if (sr.Scores.ContainsKey("專業科目(原始)"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["專業科目(原始)"].ToDataTable(prefix + "SpecializationScore", "專業科目(原始)成績"));
+                        }
                     }
-                    //  體育
-                    if (sr.Scores.ContainsKey("體育"))
+                    #endregion
+                }
+                else
+                {
+                    #region 學業成績
+                    foreach (SHSemesterEntryScoreRecord sr in _SHSemesterEntryScoreRecords)
                     {
-                        schoolRollTable.Tables.Add(sr.Scores["體育"].ToDataTable(prefix + "PhysicalScore", "體育成績"));
+                        yIndex = sr.GradeYear;
+                        if (!_SHSemesterEntryScoreHistory.ContainsKey(yIndex))
+                            continue;
+
+                        if (_SHSemesterEntryScoreHistory[yIndex].Where(x => (x.Key == sr.SchoolYear && x.Value == sr.Semester)).Count() == 0)
+                            continue;
+
+                        sIndex = sr.Semester;
+
+                        prefix = "Y" + yIndex + "S" + sIndex;
+
+                        // 學業
+                        if (sr.Scores.ContainsKey("學業"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["學業"].ToDataTable(prefix + "AcademicScore", "學業成績"));
+
+                            SHRankingInfo rank = sr.ClassRating.Find(x => x.Name.Equals("學業"));
+                            schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicClassRank", "學業成績班級排名"));
+
+                            rank = sr.DeptRating.Find(x => x.Name.Equals("學業"));
+                            schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicDepartmentRank", "學業成績科排名"));
+
+                            rank = sr.YearRating.Find(x => x.Name.Equals("學業"));
+                            schoolRollTable.Tables.Add((rank == null ? "" : rank.Ranking.ToString()).ToDataTable(prefix + "AcademicGradeRank", "學業成績年級排名"));
+                        }
+                        //  體育
+                        if (sr.Scores.ContainsKey("體育"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["體育"].ToDataTable(prefix + "PhysicalScore", "體育成績"));
+                        }
+                        //  健康與護理
+                        if (sr.Scores.ContainsKey("健康與護理"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["健康與護理"].ToDataTable(prefix + "HealthScore", "健康與護理成績"));
+                        }
+                        //  國防通識
+                        if (sr.Scores.ContainsKey("國防通識"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["國防通識"].ToDataTable(prefix + "NationalDefenseScore", "國防通識成績"));
+                        }
+                        //  實習科目
+                        if (sr.Scores.ContainsKey("實習科目"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["實習科目"].ToDataTable(prefix + "PracticeScore", "實習科目成績"));
+                        }
+                        //  專業科目
+                        if (sr.Scores.ContainsKey("專業科目"))
+                        {
+                            schoolRollTable.Tables.Add(sr.Scores["專業科目"].ToDataTable(prefix + "SpecializationScore", "專業科目成績"));
+                        }
                     }
-                    //  健康與護理
-                    if (sr.Scores.ContainsKey("健康與護理"))
-                    {
-                        schoolRollTable.Tables.Add(sr.Scores["健康與護理"].ToDataTable(prefix + "HealthScore", "健康與護理成績"));
-                    }
-                    //  國防通識
-                    if (sr.Scores.ContainsKey("國防通識"))
-                    {
-                        schoolRollTable.Tables.Add(sr.Scores["國防通識"].ToDataTable(prefix + "NationalDefenseScore", "國防通識成績"));
-                    }
-                    //  實習科目
-                    if (sr.Scores.ContainsKey("實習科目"))
-                    {
-                        schoolRollTable.Tables.Add(sr.Scores["實習科目"].ToDataTable(prefix + "PracticeScore", "實習科目成績"));
-                    }
-                    //  專業科目
-                    if (sr.Scores.ContainsKey("專業科目"))
-                    {
-                        schoolRollTable.Tables.Add(sr.Scores["專業科目"].ToDataTable(prefix + "SpecializationScore", "專業科目成績"));
-                    }
+                    #endregion
                 }
             }
             #endregion
@@ -1111,9 +1176,14 @@ namespace SH_StudentRecordReport
 
             #region 報表列印日期
 
-            schoolRollTable.Tables.Add((DateTime.Today.Year - 1911).ConvertToChineseNumber().ToDataTable("PrintYear", "報表列印日期之民國年"));
-            schoolRollTable.Tables.Add(DateTime.Today.Month.ConvertToChineseNumber().ToDataTable("PrintMonth", "報表列印日期之月份"));
-            schoolRollTable.Tables.Add(DateTime.Today.Day.ConvertToChineseNumber().ToDataTable("PrintDay", "報表列印日期之日"));
+            // 國字民國年
+            //schoolRollTable.Tables.Add((DateTime.Today.Year - 1911).ConvertToChineseNumber().ToDataTable("PrintYear", "報表列印日期之民國年"));
+            //schoolRollTable.Tables.Add(DateTime.Today.Month.ConvertToChineseNumber().ToDataTable("PrintMonth", "報表列印日期之月份"));            
+            //schoolRollTable.Tables.Add(DateTime.Today.Day.ConvertToChineseNumber().ToDataTable("PrintDay", "報表列印日期之日"));
+
+            schoolRollTable.Tables.Add(string.Format("{0:000}", DateTime.Today.Year - 1911).ToDataTable("PrintYear", "報表列印日期之民國年"));
+            schoolRollTable.Tables.Add(string.Format("{0:00}",DateTime.Today.Month).ToDataTable("PrintMonth", "報表列印日期之月份"));
+            schoolRollTable.Tables.Add(string.Format("{0:00}",DateTime.Today.Day).ToDataTable("PrintDay", "報表列印日期之日"));
 
             #endregion
 

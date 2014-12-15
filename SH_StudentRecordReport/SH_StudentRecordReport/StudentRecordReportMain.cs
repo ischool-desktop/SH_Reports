@@ -35,18 +35,18 @@ namespace SH_StudentRecordReport
 
         public StudentRecordReportMain()
         {
-            reportName = "個人學期成績證明單(可選擇列印原始/擇優)";
+            reportName = "學期成績證明單(可選擇列印原始/擇優)";
             reportPath = "資料統計";
 
-            //  學生頁籤-->成績相關報表-->個人學期成績證明單(可選擇列印原始/擇優)
+            //  學生頁籤-->成績相關報表-->學期成績證明單(可選擇列印原始/擇優)
             button_student = RoleAclSource.Instance["學生"]["報表"];
-            button_student.Add(new RibbonFeature("Student_Button_SH_StudentRecordReport", "個人學期成績證明單(可選擇列印原始/擇優)"));
+            button_student.Add(new RibbonFeature("Student_Button_SH_StudentRecordReport", "學期成績證明單(可選擇列印原始/擇優)"));
             MotherForm.RibbonBarItems["學生", reportPath]["報表"]["成績相關報表"][reportName].Enable = UserAcl.Current["Student_Button_SH_StudentRecordReport"].Executable;
             MotherForm.RibbonBarItems["學生", reportPath]["報表"]["成績相關報表"][reportName].Click += new EventHandler(button_student_OnClick);
 
-            //  班級頁籤-->成績相關報表-->個人學期成績證明單(可選擇列印原始/擇優)
+            //  班級頁籤-->成績相關報表-->學期成績證明單(可選擇列印原始/擇優)
             button_class = RoleAclSource.Instance["班級"]["報表"];
-            button_class.Add(new RibbonFeature("Class_Button_SH_StudentRecordReport", "個人學期成績證明單(可選擇列印原始/擇優)"));
+            button_class.Add(new RibbonFeature("Class_Button_SH_StudentRecordReport", "學期成績證明單(可選擇列印原始/擇優)"));
             MotherForm.RibbonBarItems["班級", reportPath]["報表"]["成績相關報表"][reportName].Enable = UserAcl.Current["Class_Button_SH_StudentRecordReport"].Executable;
             MotherForm.RibbonBarItems["班級", reportPath]["報表"]["成績相關報表"][reportName].Click += new EventHandler(button_class_OnClick);
 
@@ -164,7 +164,7 @@ namespace SH_StudentRecordReport
                     _BGWStudentRecord.DoWork += new DoWorkEventHandler(_BGWStudentRecord_DoWork);
                     _BGWStudentRecord.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_BGWStudentRecord_RunWorkerCompleted);
                     _BGWStudentRecord.ProgressChanged += new ProgressChangedEventHandler(_BGWStudentRecord_ProgressChanged);
-                    MotherForm.SetStatusBarMessage("個人學期成績證明單(可選擇列印原始/擇優)產生中...");
+                    MotherForm.SetStatusBarMessage("學期成績證明單(可選擇列印原始/擇優)產生中...");
                     _BGWStudentRecord.RunWorkerAsync();
                     
                     //
@@ -409,7 +409,7 @@ namespace SH_StudentRecordReport
 
         private void _BGWStudentRecord_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            MotherForm.SetStatusBarMessage("個人學期成績證明單(可選擇列印原始/擇優)產生中...", e.ProgressPercentage);
+            MotherForm.SetStatusBarMessage("學期成績證明單(可選擇列印原始/擇優)產生中...", e.ProgressPercentage);
         }
 
         private void _BGWStudentRecord_DoWork(object sender, DoWorkEventArgs e)

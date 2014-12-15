@@ -84,9 +84,7 @@ namespace SH_StudentRecordReport
             _buffer2 = buffer2;
             _buffer3 = buffer3;
 
-            cboRecvIdentity.SelectedIndex = print[0];
-            cboRecvAddress.SelectedIndex = print[1];
-            cboRecvPhone.SelectedIndex = print[2];
+
 
             txtCoreSubjectSign.Text = coreSubjectSign;
             txtCoreCourseSign.Text = coreCourseSign;
@@ -357,9 +355,7 @@ namespace SH_StudentRecordReport
             if (_isUpload3)
                 config["CustomizeTemplate3"] = _base64string3;
 
-            config["Custodian"] = cboRecvIdentity.SelectedIndex.ToString();
-            config["Address"] = cboRecvAddress.SelectedIndex.ToString();
-            config["Phone"] = cboRecvPhone.SelectedIndex.ToString();
+    
             config["CoreSubjectSign"] = txtCoreSubjectSign.Text;
             config["CoreCourseSign"] = txtCoreCourseSign.Text;
             config["ResitSign"] = txtResitSign.Text;

@@ -32,11 +32,6 @@
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.Exit = new DevComponents.DotNetBar.ButtonX();
             this.Print = new DevComponents.DotNetBar.ButtonX();
             this.labelX12 = new DevComponents.DotNetBar.LabelX();
@@ -58,7 +53,7 @@
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel2.Enabled = false;
-            this.linkLabel2.Location = new System.Drawing.Point(64, 230);
+            this.linkLabel2.Location = new System.Drawing.Point(64, 161);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(60, 17);
             this.linkLabel2.TabIndex = 16;
@@ -71,7 +66,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Location = new System.Drawing.Point(4, 230);
+            this.linkLabel1.Location = new System.Drawing.Point(4, 161);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(60, 17);
             this.linkLabel1.TabIndex = 15;
@@ -79,83 +74,12 @@
             this.linkLabel1.Text = "範本設定";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // labelX3
-            // 
-            this.labelX3.AutoSize = true;
-            this.labelX3.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.Class = "";
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(293, 44);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(20, 21);
-            this.labelX3.TabIndex = 14;
-            this.labelX3.Text = "號";
-            // 
-            // labelX2
-            // 
-            this.labelX2.AutoSize = true;
-            this.labelX2.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(124, 44);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(34, 21);
-            this.labelX2.TabIndex = 12;
-            this.labelX2.Text = "字第";
-            // 
-            // textBoxX2
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX2.Border.Class = "TextBoxBorder";
-            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX2.Location = new System.Drawing.Point(159, 41);
-            this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.Size = new System.Drawing.Size(130, 25);
-            this.textBoxX2.TabIndex = 11;
-            this.textBoxX2.WatermarkText = "請輸入數字";
-            // 
-            // textBoxX1
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.Location = new System.Drawing.Point(7, 41);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.Size = new System.Drawing.Size(113, 25);
-            this.textBoxX1.TabIndex = 10;
-            this.textBoxX1.WatermarkText = "請輸入文字";
-            // 
-            // labelX1
-            // 
-            this.labelX1.AutoSize = true;
-            this.labelX1.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(7, 7);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(213, 21);
-            this.labelX1.TabIndex = 9;
-            this.labelX1.Text = "請輸入成績證明書/成績證明書開始字號";
-            // 
             // Exit
             // 
             this.Exit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.Exit.BackColor = System.Drawing.Color.Transparent;
             this.Exit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.Exit.Location = new System.Drawing.Point(237, 222);
+            this.Exit.Location = new System.Drawing.Point(237, 158);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(75, 23);
             this.Exit.TabIndex = 17;
@@ -167,7 +91,7 @@
             this.Print.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.Print.BackColor = System.Drawing.Color.Transparent;
             this.Print.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.Print.Location = new System.Drawing.Point(155, 222);
+            this.Print.Location = new System.Drawing.Point(155, 158);
             this.Print.Name = "Print";
             this.Print.Size = new System.Drawing.Size(75, 23);
             this.Print.TabIndex = 13;
@@ -182,7 +106,7 @@
             // 
             this.labelX12.BackgroundStyle.Class = "";
             this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX12.Location = new System.Drawing.Point(7, 77);
+            this.labelX12.Location = new System.Drawing.Point(7, 8);
             this.labelX12.Name = "labelX12";
             this.labelX12.Size = new System.Drawing.Size(191, 23);
             this.labelX12.TabIndex = 23;
@@ -196,7 +120,7 @@
             this.groupPanel2.Controls.Add(this.checkBoxX3);
             this.groupPanel2.Controls.Add(this.checkBoxX2);
             this.groupPanel2.Controls.Add(this.checkBoxX1);
-            this.groupPanel2.Location = new System.Drawing.Point(10, 107);
+            this.groupPanel2.Location = new System.Drawing.Point(10, 38);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.Size = new System.Drawing.Size(302, 102);
             // 
@@ -275,16 +199,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(319, 254);
+            this.ClientSize = new System.Drawing.Size(319, 189);
             this.Controls.Add(this.labelX12);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.labelX3);
-            this.Controls.Add(this.labelX2);
-            this.Controls.Add(this.textBoxX2);
-            this.Controls.Add(this.textBoxX1);
-            this.Controls.Add(this.labelX1);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.Print);
             this.DoubleBuffered = true;
@@ -292,6 +211,7 @@
             this.Name = "FrontForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "成績證明書";
+            this.Load += new System.EventHandler(this.FrontForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
@@ -305,11 +225,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private DevComponents.DotNetBar.LabelX labelX3;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
-        private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.ButtonX Exit;
         private DevComponents.DotNetBar.ButtonX Print;
         private DevComponents.DotNetBar.LabelX labelX12;
