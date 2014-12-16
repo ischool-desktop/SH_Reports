@@ -153,8 +153,11 @@
   <ItemGroup>
     <None Include="Library\FISCA.dll.config" />
     <None Include="Library\ReportHelper.dll.config" />
+    <None Include="Template\成績證明書進校%28原始%29.xls" />
     <None Include="Template\成績證明書進校.xls" />
+    <None Include="Template\成績證明書高中%28原始%29.xls" />
     <None Include="Template\成績證明書高中.xls" />
+    <None Include="Template\成績證明書高職%28原始%29.xls" />
     <None Include="Template\成績證明書高職.xls" />
   </ItemGroup>
   <ItemGroup>

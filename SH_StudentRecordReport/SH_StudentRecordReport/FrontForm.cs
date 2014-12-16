@@ -13,10 +13,13 @@ namespace SH_StudentRecordReport
     public partial class FrontForm : FISCA.Presentation.Controls.BaseForm
     {
         private MemoryStream _defaultTemplate1 = new MemoryStream(Properties.Resources.成績證明書高中);  //  預設高中成績證明書範本
+        private MemoryStream _defaultTemplate1s = new MemoryStream(Properties.Resources.成績證明書高中_原始_);  //  預設高中成績證明書範本
         private MemoryStream _template1 = null;                                                     //  自訂高中成績證明書範本
         private MemoryStream _defaultTemplate2 = new MemoryStream(Properties.Resources.成績證明書高職);  //  預設高職成績證明書範本
+        private MemoryStream _defaultTemplate2s = new MemoryStream(Properties.Resources.成績證明書高職_原始_);  //  預設高職成績證明書範本
         private MemoryStream _template2 = null;                                                     //  自訂高職成績證明書範本
         private MemoryStream _defaultTemplate3 = new MemoryStream(Properties.Resources.成績證明書進校);  //  預設進校成績證明書範本
+        private MemoryStream _defaultTemplate3s = new MemoryStream(Properties.Resources.成績證明書進校_原始_);  //  預設進校成績證明書範本
         private MemoryStream _template3 = null;                                                     //  自訂進校成績證明書範本
 
         private int _useTemplateNumber = 0;
@@ -52,15 +55,24 @@ namespace SH_StudentRecordReport
                 switch (_useTemplateNumber)
                 {
                     case 1:
-                        return _defaultTemplate1;
+                        if (_ChkSScore)
+                            return _defaultTemplate1s;
+                        else
+                            return _defaultTemplate1;
                     case 2:
                         return _template1;
                     case 3:
-                        return _defaultTemplate2;
+                        if (_ChkSScore)
+                            return _defaultTemplate2s;
+                        else
+                            return _defaultTemplate2;
                     case 4:
                         return _template2;
                     case 5:
-                        return _defaultTemplate3;
+                        if (_ChkSScore)
+                            return _defaultTemplate3s;
+                        else
+                            return _defaultTemplate3;
                     case 6:
                         return _template3;
                     default:

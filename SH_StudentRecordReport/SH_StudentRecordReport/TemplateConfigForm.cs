@@ -108,7 +108,10 @@ namespace SH_StudentRecordReport
             {
                 try
                 {
-                    DownloadTemplate(sfd, Properties.Resources.成績證明書高中);
+                    if (chkSScore.Checked)
+                        DownloadTemplate(sfd, Properties.Resources.成績證明書高中_原始_);
+                    else
+                        DownloadTemplate(sfd, Properties.Resources.成績證明書高中);
                 }
                 catch (Exception ex)
                 {
@@ -167,7 +170,10 @@ namespace SH_StudentRecordReport
             {
                 try
                 {
-                    DownloadTemplate(sfd, Properties.Resources.成績證明書高職);
+                    if (chkSScore.Checked)
+                        DownloadTemplate(sfd, Properties.Resources.成績證明書高職_原始_);
+                    else
+                        DownloadTemplate(sfd, Properties.Resources.成績證明書高職);
                 }
                 catch (Exception ex)
                 {
@@ -226,7 +232,10 @@ namespace SH_StudentRecordReport
             {
                 try
                 {
-                    DownloadTemplate(sfd, Properties.Resources.成績證明書進校);
+                    if (chkSScore.Checked)
+                        DownloadTemplate(sfd, Properties.Resources.成績證明書進校_原始_);
+                    else
+                        DownloadTemplate(sfd, Properties.Resources.成績證明書進校);
                 }
                 catch (Exception ex)
                 {

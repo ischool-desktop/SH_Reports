@@ -121,10 +121,19 @@
   <data name="成績證明書進校" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\template\成績證明書進校.xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="成績證明書進校_原始_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\template\成績證明書進校(原始).xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="成績證明書高中" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\template\成績證明書高中.xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="成績證明書高中_原始_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\template\成績證明書高中(原始).xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="成績證明書高職" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\template\成績證明書高職.xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="成績證明書高職_原始_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\template\成績證明書高職(原始).xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

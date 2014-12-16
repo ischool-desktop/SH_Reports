@@ -73,6 +73,16 @@ namespace SH_StudentRecordReport.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
+        internal static byte[] 成績證明書進校_原始_ {
+            get {
+                object obj = ResourceManager.GetObject("成績證明書進校_原始_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
         internal static byte[] 成績證明書高中 {
             get {
                 object obj = ResourceManager.GetObject("成績證明書高中", resourceCulture);
@@ -83,9 +93,29 @@ namespace SH_StudentRecordReport.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
+        internal static byte[] 成績證明書高中_原始_ {
+            get {
+                object obj = ResourceManager.GetObject("成績證明書高中_原始_", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
         internal static byte[] 成績證明書高職 {
             get {
                 object obj = ResourceManager.GetObject("成績證明書高職", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 成績證明書高職_原始_ {
+            get {
+                object obj = ResourceManager.GetObject("成績證明書高職_原始_", resourceCulture);
                 return ((byte[])(obj));
             }
         }
