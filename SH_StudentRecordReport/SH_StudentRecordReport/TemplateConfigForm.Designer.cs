@@ -53,6 +53,7 @@
             this.checkBoxX2 = new System.Windows.Forms.RadioButton();
             this.checkBoxX1 = new System.Windows.Forms.RadioButton();
             this.groupPanel4 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.chkSScore = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.groupPanel7 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.chkTextScore = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.chkClassTeacher = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -61,17 +62,16 @@
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
-            this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.txtRetakeSign = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtResitSign = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtManualAdjustSign = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txtSchoolYearAdjustSign = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtFailedSign = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtCoreSubjectSign = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
-            this.chkSScore = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.txtSchoolYearAdjustSign = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel1.SuspendLayout();
             this.groupPanel5.SuspendLayout();
             this.groupPanel3.SuspendLayout();
@@ -530,7 +530,7 @@
             this.groupPanel4.Controls.Add(this.labelX4);
             this.groupPanel4.Location = new System.Drawing.Point(258, 7);
             this.groupPanel4.Name = "groupPanel4";
-            this.groupPanel4.Size = new System.Drawing.Size(405, 320);
+            this.groupPanel4.Size = new System.Drawing.Size(405, 281);
             // 
             // 
             // 
@@ -564,6 +564,24 @@
             this.groupPanel4.TabIndex = 5;
             this.groupPanel4.Text = "列印設定";
             // 
+            // chkSScore
+            // 
+            this.chkSScore.AutoSize = true;
+            this.chkSScore.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.chkSScore.BackgroundStyle.Class = "";
+            this.chkSScore.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chkSScore.Checked = true;
+            this.chkSScore.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSScore.CheckValue = "Y";
+            this.chkSScore.Location = new System.Drawing.Point(14, 16);
+            this.chkSScore.Name = "chkSScore";
+            this.chkSScore.Size = new System.Drawing.Size(177, 21);
+            this.chkSScore.TabIndex = 28;
+            this.chkSScore.Text = "科目、學業 使用原始成績";
+            // 
             // groupPanel7
             // 
             this.groupPanel7.BackColor = System.Drawing.Color.Transparent;
@@ -571,7 +589,7 @@
             this.groupPanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.groupPanel7.Controls.Add(this.chkTextScore);
             this.groupPanel7.Controls.Add(this.chkClassTeacher);
-            this.groupPanel7.Location = new System.Drawing.Point(14, 176);
+            this.groupPanel7.Location = new System.Drawing.Point(14, 139);
             this.groupPanel7.Name = "groupPanel7";
             this.groupPanel7.Size = new System.Drawing.Size(164, 98);
             // 
@@ -648,7 +666,7 @@
             // 
             this.txtCoreCourseSign.Border.Class = "TextBoxBorder";
             this.txtCoreCourseSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtCoreCourseSign.Location = new System.Drawing.Point(319, 58);
+            this.txtCoreCourseSign.Location = new System.Drawing.Point(106, 98);
             this.txtCoreCourseSign.Name = "txtCoreCourseSign";
             this.txtCoreCourseSign.Size = new System.Drawing.Size(60, 25);
             this.txtCoreCourseSign.TabIndex = 13;
@@ -661,7 +679,7 @@
             // 
             this.labelX10.BackgroundStyle.Class = "";
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX10.Location = new System.Drawing.Point(227, 49);
+            this.labelX10.Location = new System.Drawing.Point(14, 89);
             this.labelX10.Name = "labelX10";
             this.labelX10.Size = new System.Drawing.Size(87, 43);
             this.labelX10.TabIndex = 19;
@@ -677,7 +695,7 @@
             // 
             this.labelX6.BackgroundStyle.Class = "";
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(178, 253);
+            this.labelX6.Location = new System.Drawing.Point(178, 193);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(136, 21);
             this.labelX6.TabIndex = 5;
@@ -692,7 +710,7 @@
             // 
             this.labelX7.BackgroundStyle.Class = "";
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(213, 105);
+            this.labelX7.Location = new System.Drawing.Point(213, 16);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(101, 21);
             this.labelX7.TabIndex = 5;
@@ -707,29 +725,12 @@
             // 
             this.labelX9.BackgroundStyle.Class = "";
             this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX9.Location = new System.Drawing.Point(200, 179);
+            this.labelX9.Location = new System.Drawing.Point(173, 100);
             this.labelX9.Name = "labelX9";
-            this.labelX9.Size = new System.Drawing.Size(114, 21);
+            this.labelX9.Size = new System.Drawing.Size(141, 21);
             this.labelX9.TabIndex = 5;
-            this.labelX9.Text = "學期調整成績標示";
+            this.labelX9.Text = "學期手動調整成績標示";
             this.labelX9.TextAlignment = System.Drawing.StringAlignment.Far;
-            // 
-            // labelX8
-            // 
-            this.labelX8.AutoSize = true;
-            // 
-            // 
-            // 
-            this.labelX8.BackgroundStyle.Class = "";
-            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Enabled = false;
-            this.labelX8.Location = new System.Drawing.Point(200, 142);
-            this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(114, 21);
-            this.labelX8.TabIndex = 5;
-            this.labelX8.Text = "學年調整成績標示";
-            this.labelX8.TextAlignment = System.Drawing.StringAlignment.Far;
-            this.labelX8.Visible = false;
             // 
             // labelX5
             // 
@@ -739,7 +740,7 @@
             // 
             this.labelX5.BackgroundStyle.Class = "";
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(178, 216);
+            this.labelX5.Location = new System.Drawing.Point(178, 149);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(136, 21);
             this.labelX5.TabIndex = 5;
@@ -753,7 +754,7 @@
             // 
             this.txtRetakeSign.Border.Class = "TextBoxBorder";
             this.txtRetakeSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtRetakeSign.Location = new System.Drawing.Point(319, 250);
+            this.txtRetakeSign.Location = new System.Drawing.Point(319, 190);
             this.txtRetakeSign.Name = "txtRetakeSign";
             this.txtRetakeSign.Size = new System.Drawing.Size(60, 25);
             this.txtRetakeSign.TabIndex = 18;
@@ -765,7 +766,7 @@
             // 
             this.txtResitSign.Border.Class = "TextBoxBorder";
             this.txtResitSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtResitSign.Location = new System.Drawing.Point(319, 213);
+            this.txtResitSign.Location = new System.Drawing.Point(319, 146);
             this.txtResitSign.Name = "txtResitSign";
             this.txtResitSign.Size = new System.Drawing.Size(60, 25);
             this.txtResitSign.TabIndex = 17;
@@ -777,24 +778,10 @@
             // 
             this.txtManualAdjustSign.Border.Class = "TextBoxBorder";
             this.txtManualAdjustSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtManualAdjustSign.Location = new System.Drawing.Point(319, 176);
+            this.txtManualAdjustSign.Location = new System.Drawing.Point(319, 98);
             this.txtManualAdjustSign.Name = "txtManualAdjustSign";
             this.txtManualAdjustSign.Size = new System.Drawing.Size(60, 25);
             this.txtManualAdjustSign.TabIndex = 16;
-            // 
-            // txtSchoolYearAdjustSign
-            // 
-            // 
-            // 
-            // 
-            this.txtSchoolYearAdjustSign.Border.Class = "TextBoxBorder";
-            this.txtSchoolYearAdjustSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtSchoolYearAdjustSign.Enabled = false;
-            this.txtSchoolYearAdjustSign.Location = new System.Drawing.Point(319, 139);
-            this.txtSchoolYearAdjustSign.Name = "txtSchoolYearAdjustSign";
-            this.txtSchoolYearAdjustSign.Size = new System.Drawing.Size(60, 25);
-            this.txtSchoolYearAdjustSign.TabIndex = 15;
-            this.txtSchoolYearAdjustSign.Visible = false;
             // 
             // txtFailedSign
             // 
@@ -803,7 +790,7 @@
             // 
             this.txtFailedSign.Border.Class = "TextBoxBorder";
             this.txtFailedSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtFailedSign.Location = new System.Drawing.Point(319, 102);
+            this.txtFailedSign.Location = new System.Drawing.Point(319, 13);
             this.txtFailedSign.Name = "txtFailedSign";
             this.txtFailedSign.Size = new System.Drawing.Size(60, 25);
             this.txtFailedSign.TabIndex = 14;
@@ -815,7 +802,7 @@
             // 
             this.txtCoreSubjectSign.Border.Class = "TextBoxBorder";
             this.txtCoreSubjectSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtCoreSubjectSign.Location = new System.Drawing.Point(319, 12);
+            this.txtCoreSubjectSign.Location = new System.Drawing.Point(106, 52);
             this.txtCoreSubjectSign.Name = "txtCoreSubjectSign";
             this.txtCoreSubjectSign.Size = new System.Drawing.Size(60, 25);
             this.txtCoreSubjectSign.TabIndex = 12;
@@ -828,7 +815,7 @@
             // 
             this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(227, 3);
+            this.labelX4.Location = new System.Drawing.Point(14, 43);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(87, 43);
             this.labelX4.TabIndex = 3;
@@ -854,23 +841,32 @@
             this.labelX11.TextAlignment = System.Drawing.StringAlignment.Center;
             this.labelX11.WordWrap = true;
             // 
-            // chkSScore
-            // 
-            this.chkSScore.AutoSize = true;
-            this.chkSScore.BackColor = System.Drawing.Color.Transparent;
+            // txtSchoolYearAdjustSign
             // 
             // 
             // 
-            this.chkSScore.BackgroundStyle.Class = "";
-            this.chkSScore.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chkSScore.Checked = true;
-            this.chkSScore.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSScore.CheckValue = "Y";
-            this.chkSScore.Location = new System.Drawing.Point(14, 16);
-            this.chkSScore.Name = "chkSScore";
-            this.chkSScore.Size = new System.Drawing.Size(177, 21);
-            this.chkSScore.TabIndex = 28;
-            this.chkSScore.Text = "科目、學業 使用原始成績";
+            // 
+            this.txtSchoolYearAdjustSign.Border.Class = "TextBoxBorder";
+            this.txtSchoolYearAdjustSign.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtSchoolYearAdjustSign.Location = new System.Drawing.Point(319, 52);
+            this.txtSchoolYearAdjustSign.Name = "txtSchoolYearAdjustSign";
+            this.txtSchoolYearAdjustSign.Size = new System.Drawing.Size(60, 25);
+            this.txtSchoolYearAdjustSign.TabIndex = 15;
+            // 
+            // labelX8
+            // 
+            this.labelX8.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX8.BackgroundStyle.Class = "";
+            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX8.Location = new System.Drawing.Point(200, 54);
+            this.labelX8.Name = "labelX8";
+            this.labelX8.Size = new System.Drawing.Size(114, 21);
+            this.labelX8.TabIndex = 5;
+            this.labelX8.Text = "學年調整成績標示";
+            this.labelX8.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // TemplateConfigForm
             // 
@@ -923,9 +919,7 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtRetakeSign;
         private DevComponents.DotNetBar.LabelX labelX7;
         private DevComponents.DotNetBar.LabelX labelX9;
-        private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.Controls.TextBoxX txtManualAdjustSign;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtSchoolYearAdjustSign;
         private DevComponents.DotNetBar.Controls.TextBoxX txtFailedSign;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel5;
         private System.Windows.Forms.LinkLabel linkLabel7;
@@ -947,5 +941,7 @@
         private DevComponents.DotNetBar.Controls.CheckBoxX chkTextScore;
         private DevComponents.DotNetBar.Controls.CheckBoxX chkClassTeacher;
         private DevComponents.DotNetBar.Controls.CheckBoxX chkSScore;
+        private DevComponents.DotNetBar.LabelX labelX8;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtSchoolYearAdjustSign;
     }
 }
