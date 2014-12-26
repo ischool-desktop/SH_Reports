@@ -189,6 +189,7 @@ namespace SH_DaliSemesterReportEnglishGPA
 
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            this.radioButton5.CheckedChanged += new EventHandler(this.radioButton_CheckedChanged);
 
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -206,7 +207,7 @@ namespace SH_DaliSemesterReportEnglishGPA
         {
             #region 讀取 Preference
 
-            config = K12.Data.School.Configuration["中華民國高雄市高中英文成績單(GPA)"];
+            config = K12.Data.School.Configuration["中華民國高雄市高中英文成績單"];
             if (config != null)
             {
                 int no = 0;
@@ -249,6 +250,9 @@ namespace SH_DaliSemesterReportEnglishGPA
                         break;
                     case 2:
                         this.radioButton2.Checked = true;
+                        break;
+                    case 5:
+                        this.radioButton5.Checked = true;
                         break;
                 }
 
@@ -313,9 +317,16 @@ namespace SH_DaliSemesterReportEnglishGPA
 
             if (this.radioButton2.Checked && (new AccessHelper()).Select<UDT.ScoreDegreeMapping>().Count == 0)
             {
-                MsgBox.Show("請按「等第對照」，設定成績與等第之對照！");
+                MsgBox.Show("請按「等第GPA對照」，設定成績與等第之對照！");
                 return;
             }
+
+            if (this.radioButton5.Checked && (new AccessHelper()).Select<UDT.ScoreDegreeMapping>().Count == 0)
+            {
+                MsgBox.Show("請按「等第GPA對照」，設定成績與等第之對照！");
+                return;
+            }
+
 
             Workbook wb = new Workbook();
             try
@@ -430,5 +441,12 @@ namespace SH_DaliSemesterReportEnglishGPA
         {
             _useUpdateRecordNumber = Convert.ToInt32(((System.Windows.Forms.RadioButton)sender).Name.Substring((((System.Windows.Forms.RadioButton)sender).Name.Length - 1), 1));
         }
+
+        private void FrontForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+      
     }
 }

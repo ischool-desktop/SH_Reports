@@ -44,6 +44,7 @@
             this.checkBoxX2 = new System.Windows.Forms.RadioButton();
             this.checkBoxX1 = new System.Windows.Forms.RadioButton();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -64,19 +65,19 @@
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel2.Location = new System.Drawing.Point(64, 322);
+            this.linkLabel2.Location = new System.Drawing.Point(64, 317);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(60, 17);
+            this.linkLabel2.Size = new System.Drawing.Size(87, 17);
             this.linkLabel2.TabIndex = 16;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "等第對照";
+            this.linkLabel2.Text = "等第GPA對照";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Location = new System.Drawing.Point(4, 322);
+            this.linkLabel1.Location = new System.Drawing.Point(4, 317);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(60, 17);
             this.linkLabel1.TabIndex = 15;
@@ -267,6 +268,7 @@
             this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.radioButton5);
             this.groupPanel1.Controls.Add(this.radioButton2);
             this.groupPanel1.Controls.Add(this.radioButton1);
             this.groupPanel1.Location = new System.Drawing.Point(12, 12);
@@ -305,12 +307,24 @@
             this.groupPanel1.TabIndex = 26;
             this.groupPanel1.Text = "成績格式";
             // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton5.ForeColor = System.Drawing.Color.Blue;
+            this.radioButton5.Location = new System.Drawing.Point(207, 10);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(53, 21);
+            this.radioButton5.TabIndex = 25;
+            this.radioButton5.Text = "GPA";
+            this.radioButton5.UseVisualStyleBackColor = false;
+            // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.BackColor = System.Drawing.Color.Transparent;
             this.radioButton2.ForeColor = System.Drawing.Color.Blue;
-            this.radioButton2.Location = new System.Drawing.Point(128, 10);
+            this.radioButton2.Location = new System.Drawing.Point(111, 10);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(52, 21);
             this.radioButton2.TabIndex = 24;
@@ -418,6 +432,7 @@
             this.Name = "FrontForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "英文成績單(GPA)";
+            this.Load += new System.EventHandler(this.FrontForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.groupPanel2.ResumeLayout(false);
             this.groupPanel2.PerformLayout();
@@ -452,6 +467,7 @@
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton5;
 
     }
 }

@@ -3,7 +3,7 @@ using System;
 
 namespace SH_DaliSemesterReportEnglishGPA.UDT
 {
-    [FISCA.UDT.TableName("ischool.mapping.score_degree_gpa")]
+    [FISCA.UDT.TableName("ischool.mapping.score_degree")]
     public class ScoreDegreeMapping : ActiveRecord
     {
         internal static void RaiseAfterUpdateEvent(object sender, EventArgs e)
@@ -36,5 +36,11 @@ namespace SH_DaliSemesterReportEnglishGPA.UDT
         {
             return (this.MemberwiseClone() as ScoreDegreeMapping);
         }
+
+        /// <summary>
+        /// GPA
+        /// </summary>
+        [Field(Field = "gpa", Indexed = false)]
+        public decimal? GPA { get; set; }
     }
 }

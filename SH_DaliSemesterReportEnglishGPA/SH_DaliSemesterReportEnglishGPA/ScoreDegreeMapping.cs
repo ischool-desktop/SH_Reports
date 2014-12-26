@@ -184,6 +184,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                 list.Add(udts[i].MinScore);
                 list.Add(udts[i].MaxScore);
                 list.Add(udts[i].Degree);
+                list.Add(udts[i].GPA);
 
                 dicOriginalScoreDegreeMappings.Add(udts[i].UID, udts[i]);
 
@@ -252,7 +253,9 @@ namespace SH_DaliSemesterReportEnglishGPA
                     nRecord.MinScore = decimal.Parse(dataGridRow.Cells[0].Value + "");
                     nRecord.MaxScore = decimal.Parse(dataGridRow.Cells[1].Value + "");
                     nRecord.Degree = dataGridRow.Cells[2].Value + "";
-
+                    decimal gpa;
+                    decimal.TryParse(dataGridRow.Cells[colGPA.Index].Value + "", out gpa);
+                    nRecord.GPA = gpa;
                     nRecords.Add(nRecord);
                 }
                 if (nRecords.Count > 0)

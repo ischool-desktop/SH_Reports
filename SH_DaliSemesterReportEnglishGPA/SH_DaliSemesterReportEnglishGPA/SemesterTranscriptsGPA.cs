@@ -40,14 +40,14 @@ namespace SH_DaliSemesterReportEnglishGPA
 
             //  學生頁籤-->成績相關報表-->英文成績單(GPA)
             button_student = RoleAclSource.Instance["學生"]["報表"];
-            button_student.Add(new RibbonFeature("Student_Button_EnglishSemesterTranscripts(GPA)", "英文成績單(GPA)"));
-            MotherForm.RibbonBarItems["學生", reportPath]["報表"]["成績相關報表"][reportName].Enable = UserAcl.Current["Student_Button_EnglishSemesterTranscripts(GPA)"].Executable;
+            button_student.Add(new RibbonFeature("Student_Button_EnglishSemesterTranscripts", "英文成績單(GPA)"));
+            MotherForm.RibbonBarItems["學生", reportPath]["報表"]["成績相關報表"][reportName].Enable = UserAcl.Current["Student_Button_EnglishSemesterTranscripts"].Executable;
             MotherForm.RibbonBarItems["學生", reportPath]["報表"]["成績相關報表"][reportName].Click += new EventHandler(button_student_OnClick);
 
             //  班級頁籤-->成績相關報表-->英文成績單(GPA)
             button_class = RoleAclSource.Instance["班級"]["報表"];
-            button_class.Add(new RibbonFeature("Class_Button_EnglishSemesterTranscripts(GPA)", "英文成績單(GPA)"));
-            MotherForm.RibbonBarItems["班級", reportPath]["報表"]["成績相關報表"][reportName].Enable = UserAcl.Current["Class_Button_EnglishSemesterTranscripts(GPA)"].Executable;
+            button_class.Add(new RibbonFeature("Class_Button_EnglishSemesterTranscripts", "英文成績單(GPA)"));
+            MotherForm.RibbonBarItems["班級", reportPath]["報表"]["成績相關報表"][reportName].Enable = UserAcl.Current["Class_Button_EnglishSemesterTranscripts"].Executable;
             MotherForm.RibbonBarItems["班級", reportPath]["報表"]["成績相關報表"][reportName].Click += new EventHandler(button_class_OnClick);
 
             button_student = null;

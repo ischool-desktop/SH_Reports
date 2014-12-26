@@ -410,7 +410,7 @@ namespace SH_DaliSemesterReportEnglishGPA
             if (score_degree_mappings != null && score_degree_mappings.Count > 0)
             {
                 foreach (UDT.ScoreDegreeMapping score_degree_mapping in score_degree_mappings)
-                    _ScoreDegreeMappingTable.Add(new { MinScore = score_degree_mapping.MinScore, MaxScore = score_degree_mapping.MaxScore, Degree = score_degree_mapping.Degree });
+                    _ScoreDegreeMappingTable.Add(new { MinScore = score_degree_mapping.MinScore, MaxScore = score_degree_mapping.MaxScore, Degree = score_degree_mapping.Degree,GPA=score_degree_mapping.GPA });
             }
             //  畢業及離校資訊
             _dicLeaveInfos = new Dictionary<string, SHLeaveInfoRecord>();

@@ -33,7 +33,7 @@ namespace SH_DaliSemesterReportEnglishGPA
         int reportType;              //  學籍表存檔選項：1-->每班一個檔案。2-->每個學生一個檔案。3-->每100個學生一個檔案。
         int textScoreOption;            //  文字評量選項：1-->導師評語。2-->文字評量。3-->2者皆要
         int retakeNumber;       //  重修成績顯示方式
-        int scoreFormatNumber;      //  成績格式：分數、等第
+        int scoreFormatNumber;      //  成績格式：分數、等第、GPA
         int updateRecordNumber;     //  異動格式：高(中)職、進校
         IEnumerable<SHStudentRecord> students;
 
@@ -210,6 +210,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                     }
                 }
                 List<dynamic> ScoreDegreeMappings = dataPool.GetScoreDegreeMapping();
+                // 分數
                 if (scoreFormatNumber == 1 && scoreBetter.HasValue)
                 {
                     scoreWithSign = scoreSign + scoreBetter.Value.ToString();
@@ -217,6 +218,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                     if (retakeNumber == 2 && ss.ReCourseScore.HasValue)
                         scoreWithSign += retakeSign + ss.ReCourseScore.Value.ToString();
                 }
+                // 等第
                 if (scoreFormatNumber == 2 && scoreBetter.HasValue)
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
@@ -228,6 +230,20 @@ namespace SH_DaliSemesterReportEnglishGPA
                         }
                     }
                 }
+                // GPA
+                if (scoreFormatNumber == 5 && scoreBetter.HasValue)
+                {
+                    foreach (dynamic o in ScoreDegreeMappings)
+                    {
+                        if (decimal.Parse(scoreBetter.Value.ToString()) >= o.MinScore && decimal.Parse(scoreBetter.Value.ToString()) <= o.MaxScore)
+                        {
+                            scoreWithSign = scoreSign + o.GPA;
+                            break;
+                        }
+                    }
+                }
+
+                // 等第
                 if (scoreFormatNumber == 2 && retakeNumber == 2 && ss.ReCourseScore.HasValue)
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
@@ -239,6 +255,20 @@ namespace SH_DaliSemesterReportEnglishGPA
                         }
                     }
                 }
+
+                // GPA
+                if (scoreFormatNumber == 5 && retakeNumber == 2 && ss.ReCourseScore.HasValue)
+                {
+                    foreach (dynamic o in ScoreDegreeMappings)
+                    {
+                        if (decimal.Parse(ss.ReCourseScore.Value.ToString()) >= o.MinScore && decimal.Parse(ss.ReCourseScore.Value.ToString()) <= o.MaxScore)
+                        {
+                            scoreWithSign += retakeSign + o.GPA;
+                            break;
+                        }
+                    }
+                }
+
                 //  不及格標示
                 if (ss.Pass.HasValue)
                 {
@@ -282,11 +312,13 @@ namespace SH_DaliSemesterReportEnglishGPA
                 if (!x.Score.HasValue)
                     return "";
 
+                // 分數
                 if (scoreFormatNumber == 1)
                 {
                     return x.Score.Value.ToString();
                 }
 
+                // 等第
                 if (scoreFormatNumber == 2)
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
@@ -297,6 +329,19 @@ namespace SH_DaliSemesterReportEnglishGPA
                         }
                     }
                 }
+
+                // GPA
+                if (scoreFormatNumber == 5)
+                {
+                    foreach (dynamic o in ScoreDegreeMappings)
+                    {
+                        if (decimal.Parse(x.Score.Value.ToString()) >= o.MinScore && decimal.Parse(x.Score.Value.ToString()) <= o.MaxScore)
+                        {
+                            return o.GPA;
+                        }
+                    }
+                }
+
                 return "";
             }).ToDataTable(prefix + "ScoreWithSign", "原始成績"));
             //  學年實得學分
@@ -712,6 +757,17 @@ namespace SH_DaliSemesterReportEnglishGPA
                                 }
                             }
                         }
+                        else if (scoreFormatNumber == 5)
+                        {
+                            foreach (dynamic o in ScoreDegreeMappings)
+                            {
+                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] <= o.MaxScore)
+                                {
+                                    schoolRollTable.Tables.Add(((object)o.GPA).ToDataTable(prefix + "AcademicScore", "學業成績"));
+                                    break;
+                                }
+                            }
+                        }
                         else
                             schoolRollTable.Tables.Add(sr.Scores["學業"].ToDataTable(prefix + "AcademicScore", "學業成績"));
 
@@ -821,6 +877,17 @@ namespace SH_DaliSemesterReportEnglishGPA
                                 if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] <= o.MaxScore)
                                 {
                                     schoolRollTable.Tables.Add(((object)o.Degree).ToDataTable(prefix + "AcademicScore", "學業成績"));
+                                    break;
+                                }
+                            }
+                        }
+                        else if (scoreFormatNumber == 5)
+                        {
+                            foreach (dynamic o in ScoreDegreeMappings)
+                            {
+                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] <= o.MaxScore)
+                                {
+                                    schoolRollTable.Tables.Add(((object)o.GPA).ToDataTable(prefix + "AcademicScore", "學業成績"));
                                     break;
                                 }
                             }
