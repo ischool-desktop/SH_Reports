@@ -223,7 +223,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
                     {
-                        if (decimal.Parse(scoreBetter.Value.ToString()) >= o.MinScore && decimal.Parse(scoreBetter.Value.ToString()) <= o.MaxScore)
+                        if (decimal.Parse(scoreBetter.Value.ToString()) >= o.MinScore && decimal.Parse(scoreBetter.Value.ToString()) < o.MaxScore)
                         {
                             scoreWithSign = scoreSign + o.Degree;
                             break;
@@ -235,7 +235,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
                     {
-                        if (decimal.Parse(scoreBetter.Value.ToString()) >= o.MinScore && decimal.Parse(scoreBetter.Value.ToString()) <= o.MaxScore)
+                        if (decimal.Parse(scoreBetter.Value.ToString()) >= o.MinScore && decimal.Parse(scoreBetter.Value.ToString()) < o.MaxScore)
                         {
                             scoreWithSign = scoreSign + o.GPA;
                             break;
@@ -248,7 +248,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
                     {
-                        if (decimal.Parse(ss.ReCourseScore.Value.ToString()) >= o.MinScore && decimal.Parse(ss.ReCourseScore.Value.ToString()) <= o.MaxScore)
+                        if (decimal.Parse(ss.ReCourseScore.Value.ToString()) >= o.MinScore && decimal.Parse(ss.ReCourseScore.Value.ToString()) < o.MaxScore)
                         {
                             scoreWithSign += retakeSign + o.Degree;
                             break;
@@ -261,7 +261,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
                     {
-                        if (decimal.Parse(ss.ReCourseScore.Value.ToString()) >= o.MinScore && decimal.Parse(ss.ReCourseScore.Value.ToString()) <= o.MaxScore)
+                        if (decimal.Parse(ss.ReCourseScore.Value.ToString()) >= o.MinScore && decimal.Parse(ss.ReCourseScore.Value.ToString()) < o.MaxScore)
                         {
                             scoreWithSign += retakeSign + o.GPA;
                             break;
@@ -323,7 +323,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
                     {
-                        if (decimal.Parse(x.Score.Value.ToString()) >= o.MinScore && decimal.Parse(x.Score.Value.ToString()) <= o.MaxScore)
+                        if (decimal.Parse(x.Score.Value.ToString()) >= o.MinScore && decimal.Parse(x.Score.Value.ToString()) < o.MaxScore)
                         {
                             return o.Degree;
                         }
@@ -335,7 +335,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                 {
                     foreach (dynamic o in ScoreDegreeMappings)
                     {
-                        if (decimal.Parse(x.Score.Value.ToString()) >= o.MinScore && decimal.Parse(x.Score.Value.ToString()) <= o.MaxScore)
+                        if (decimal.Parse(x.Score.Value.ToString()) >= o.MinScore && decimal.Parse(x.Score.Value.ToString()) < o.MaxScore)
                         {
                             return o.GPA;
                         }
@@ -750,7 +750,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                         {
                             foreach (dynamic o in ScoreDegreeMappings)
                             {
-                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] <= o.MaxScore)
+                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] < o.MaxScore)
                                 {
                                     schoolRollTable.Tables.Add(((object)o.Degree).ToDataTable(prefix + "AcademicScore", "學業成績"));
                                     break;
@@ -761,7 +761,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                         {
                             foreach (dynamic o in ScoreDegreeMappings)
                             {
-                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] <= o.MaxScore)
+                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] < o.MaxScore)
                                 {
                                     schoolRollTable.Tables.Add(((object)o.GPA).ToDataTable(prefix + "AcademicScore", "學業成績"));
                                     break;
@@ -874,7 +874,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                         {
                             foreach (dynamic o in ScoreDegreeMappings)
                             {
-                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] <= o.MaxScore)
+                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] < o.MaxScore)
                                 {
                                     schoolRollTable.Tables.Add(((object)o.Degree).ToDataTable(prefix + "AcademicScore", "學業成績"));
                                     break;
@@ -885,7 +885,7 @@ namespace SH_DaliSemesterReportEnglishGPA
                         {
                             foreach (dynamic o in ScoreDegreeMappings)
                             {
-                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] <= o.MaxScore)
+                                if (sr.Scores["學業"] >= o.MinScore && sr.Scores["學業"] < o.MaxScore)
                                 {
                                     schoolRollTable.Tables.Add(((object)o.GPA).ToDataTable(prefix + "AcademicScore", "學業成績"));
                                     break;
