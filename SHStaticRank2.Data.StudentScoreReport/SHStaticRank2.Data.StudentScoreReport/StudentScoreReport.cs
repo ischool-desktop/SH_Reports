@@ -116,7 +116,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
             {
                 //document.Save(path, Aspose.Words.SaveFormat.Doc);
                 //System.IO.FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);                
-                //stream.Write(Properties.Resources.多學期成績單_5學期, 0, Properties.Resources.多學期成績單_5學期.Length);
+                //stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
                 //stream.Flush();
                 //stream.Close();
                 //this.Configure.Template.Save(stream, Aspose.Words.SaveFormat.Doc);
@@ -135,7 +135,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
                     {
                         //document.Save(sd.FileName, Aspose.Words.SaveFormat.Doc);
                         System.IO.FileStream stream = new FileStream(sd.FileName, FileMode.Create, FileAccess.Write);
-                        stream.Write(Properties.Resources.多學期成績單_5學期, 0, Properties.Resources.多學期成績單_5學期.Length);
+                        stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
                         stream.Flush();
                         stream.Close();
 
@@ -184,6 +184,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
                     Configure.Encode();
 
                     Configure.Save();
+                    MsgBox.Show("上傳完成.");
                 }
                 catch
                 {
@@ -311,7 +312,7 @@ AS tmp(id int, subject varchar(200))";
             Configure.Rank2Tag = cboTagRank2.Text;
             Configure.RankFilterTagName = cboRankRilter.Text;
             if ( Configure.Template == null )
-                Configure.Template = new Document(new MemoryStream(Properties.Resources.多學期成績單_5學期));
+                Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
                       
 
             DialogResult = System.Windows.Forms.DialogResult.OK;

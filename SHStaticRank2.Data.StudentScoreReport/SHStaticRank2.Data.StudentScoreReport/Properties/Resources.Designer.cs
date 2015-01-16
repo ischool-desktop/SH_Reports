@@ -63,9 +63,9 @@ namespace SHStaticRank2.Data.StudentScoreReport.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] 多學期成績單_5學期 {
+        internal static byte[] 高中部歷年成績單_5學期 {
             get {
-                object obj = ResourceManager.GetObject("多學期成績單_5學期", resourceCulture);
+                object obj = ResourceManager.GetObject("高中部歷年成績單_5學期", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -104,9 +104,9 @@
       <HintPath>Library\K12.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SHStaticRank2.Data">
-      <HintPath>..\..\..\SHEvaluation\SHStaticRank2.Data.StarUniversity\SHStaticRank2.Data.StarUniversity\bin\Debug\SHStaticRank2.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SHStaticRank2.Data, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SHEvaluation\SHStaticRank2.Data\SHStaticRank2.Data\bin\Debug\SHStaticRank2.Data.dll</HintPath>
     </Reference>
     <Reference Include="SmartSchool.Core, Version=1.0.2.17, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -198,8 +198,9 @@
       <DependentUpon>StudentScoreReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\多學期成績單_5學期.doc" />
+    <None Include="Resources\高中部歷年成績單_5學期.doc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
