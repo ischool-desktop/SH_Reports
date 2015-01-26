@@ -34,6 +34,7 @@
             this.cboTagRank2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cbxSubjSelectAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.lvwSubjectPri = new DevComponents.DotNetBar.Controls.ListViewEx();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
@@ -45,7 +46,6 @@
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.cbxSubjSelectAll = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             this.SuspendLayout();
@@ -199,6 +199,22 @@
             this.groupPanel3.TabIndex = 34;
             this.groupPanel3.Text = "排名對象";
             // 
+            // cbxSubjSelectAll
+            // 
+            this.cbxSubjSelectAll.AutoSize = true;
+            // 
+            // 
+            // 
+            this.cbxSubjSelectAll.BackgroundStyle.Class = "";
+            this.cbxSubjSelectAll.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.cbxSubjSelectAll.Location = new System.Drawing.Point(79, 28);
+            this.cbxSubjSelectAll.Name = "cbxSubjSelectAll";
+            this.cbxSubjSelectAll.Size = new System.Drawing.Size(54, 21);
+            this.cbxSubjSelectAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbxSubjSelectAll.TabIndex = 16;
+            this.cbxSubjSelectAll.Text = "全選";
+            this.cbxSubjSelectAll.CheckedChanged += new System.EventHandler(this.cbxSubjSelectAll_CheckedChanged);
+            // 
             // labelX4
             // 
             this.labelX4.AutoSize = true;
@@ -345,25 +361,9 @@
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.Location = new System.Drawing.Point(328, 143);
             this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(125, 21);
+            this.labelX6.Size = new System.Drawing.Size(222, 21);
             this.labelX6.TabIndex = 43;
-            this.labelX6.Text = "1.排名對象：三年級";
-            // 
-            // cbxSubjSelectAll
-            // 
-            this.cbxSubjSelectAll.AutoSize = true;
-            // 
-            // 
-            // 
-            this.cbxSubjSelectAll.BackgroundStyle.Class = "";
-            this.cbxSubjSelectAll.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.cbxSubjSelectAll.Location = new System.Drawing.Point(79, 28);
-            this.cbxSubjSelectAll.Name = "cbxSubjSelectAll";
-            this.cbxSubjSelectAll.Size = new System.Drawing.Size(54, 21);
-            this.cbxSubjSelectAll.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cbxSubjSelectAll.TabIndex = 16;
-            this.cbxSubjSelectAll.Text = "全選";
-            this.cbxSubjSelectAll.CheckedChanged += new System.EventHandler(this.cbxSubjSelectAll_CheckedChanged);
+            this.labelX6.Text = "1.排名對象：三年級，學生狀態:一般";
             // 
             // StudentScoreReport
             // 
