@@ -113,14 +113,20 @@ namespace SHStaticRank2.Data.StudentScoreReport
                 }
             }
             try
-            {
-                //document.Save(path, Aspose.Words.SaveFormat.Doc);
-                //System.IO.FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);                
-                //stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
-                //stream.Flush();
-                //stream.Close();
-                //this.Configure.Template.Save(stream, Aspose.Words.SaveFormat.Doc);
-                this.Configure.Template.Save(path, SaveFormat.Doc);
+            {                
+                if (this.Configure.Template== null)
+                {
+                    //System.IO.FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+                    //stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
+                    //stream.Flush();
+                    //stream.Close();
+                    //this.Configure.Template.Save(stream, Aspose.Words.SaveFormat.Doc);
+                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
+                    
+                }
+                else
+                    this.Configure.Template.Save(path, SaveFormat.Doc);
+
                 System.Diagnostics.Process.Start(path);
             }
             catch
