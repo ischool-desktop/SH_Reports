@@ -51,15 +51,20 @@ namespace SHStaticRank2.Data.StudentScoreReport
 
                             if (students.Rows.Count <= 0)
                                 return;
-
+                            
                             Dictionary<string, string> classData = new Dictionary<string, string>();
                             classData.Add("學年度", K12.Data.School.DefaultSchoolYear);
                             classData.Add("N學期", "多");
                             classData.Add("學校名稱", students.Rows[0]["學校名稱"] + "");
                             classData.Add("科別", students.Rows[0]["科別"] + "");
                             classData.Add("班級", students.Rows[0]["班級"] + "");
-                            classData.Add("科目名稱1", students.Rows[0]["科目名稱1"] + "");
-
+                            for (int i = 1; i <= 5; i++)
+                            {
+                                string name = "";
+                                if (students.Columns.Contains("科目名稱" + i))
+                                    name = students.Rows[0]["科目名稱" + i].ToString();
+                                classData.Add("科目名稱" + i, name);
+                            }
                             SingleClassMailMerge classm = new SingleClassMailMerge(classData, students);
                             Document doc;
                             if (confClass.Configure.Template == null)
@@ -68,7 +73,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
                             }
                             else
                             {
-                                doc = confClass.Configure.Template;
+                                doc = confClass.Configure.Template.Clone();
                             }
                             
                             doc.MailMerge.ExecuteWithRegions(classm);
