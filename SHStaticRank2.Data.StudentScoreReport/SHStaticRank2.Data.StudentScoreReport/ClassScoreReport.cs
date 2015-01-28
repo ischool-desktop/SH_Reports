@@ -15,7 +15,7 @@ using DevComponents.DotNetBar.Controls;
 
 namespace SHStaticRank2.Data.StudentScoreReport
 {
-    public partial class StudentScoreReport : BaseForm
+    public partial class ClassScoreReport : BaseForm
     {
         private List<TagConfigRecord> _TagConfigRecords = new List<TagConfigRecord>();
         private FISCA.UDT.AccessHelper _AccessHelper = new FISCA.UDT.AccessHelper();
@@ -23,14 +23,14 @@ namespace SHStaticRank2.Data.StudentScoreReport
         public Configure Configure { get; private set; }
         private Dictionary<string, int> _SpecialListViewItem = new Dictionary<string, int>();
 
-        public StudentScoreReport()
+        public ClassScoreReport()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
             buttonX1.Enabled = false;
             _TagConfigRecords = K12.Data.TagConfig.SelectByCategory(TagCategory.Student);
-            List<Configure> lc = _AccessHelper.Select<Configure>("Name = '學生個人歷年成績單'");
-            this.Configure = (lc.Count >= 1) ? lc[0] : new Configure() { Name = "學生個人歷年成績單" };
+            List<Configure> lc = _AccessHelper.Select<Configure>("Name = '班級人歷年成績單'");
+            this.Configure = (lc.Count >= 1) ? lc[0] : new Configure() { Name = "班級歷年成績單" };
             if (lc.Count >= 1)
                 this.Configure.Decode();
             #region 填入類別
@@ -72,7 +72,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
                 cboTagRank2.Items.Add(s);
             }
 
-         
+
             #endregion
             buttonX1.Enabled = true;
         }
@@ -80,6 +80,108 @@ namespace SHStaticRank2.Data.StudentScoreReport
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+  
+
+        private void ClassScoreReport_Load(object sender, EventArgs e)
+        {
+            cbxSubjSelectAll.Checked = true;
+            FISCA.LogAgent.ApplicationLog.Log("成績", "計算", "計算學生多學期成績單。");
+            List<string> studIDList = new List<string>();
+            QueryHelper qh = new QueryHelper();
+
+            string strSQ = @"SELECT DISTINCT tmp.subject
+FROM xpath_table( 'id',
+				'''<root>''||score_info||''</root>''',
+				'sems_subj_score',
+				'/root/SemesterSubjectScoreInfo/Subject/@科目',
+				'ref_student_id IN ( select student.id from student 
+									INNER JOIN class ON student.ref_class_id = class.id 
+									WHERE student.status=1 AND class.grade_year = 3 )'
+				) 
+AS tmp(id int, subject varchar(200))";
+            DataTable dt = qh.Select(strSQ);
+            foreach (DataRow dr in dt.Rows)
+                SubjectNameList.Add(dr[0].ToString());
+            SubjectNameList.Sort(new StringComparer("國文"
+                                , "英文"
+                                , "數學"
+                                , "理化"
+                                , "生物"
+                                , "社會"
+                                , "物理"
+                                , "化學"
+                                , "歷史"
+                                , "地理"
+                                , "公民"));
+
+            // 填入科目名稱
+            foreach (string name in SubjectNameList)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = name;
+                lvi.Name = name;
+                lvi.Checked = true;
+                lvwSubjectPri.Items.Add(lvi);
+            }
+        }
+
+        private void buttonX1_Click(object sender, EventArgs e)
+        {
+            Configure.CalcGradeYear1 = false;
+            Configure.CalcGradeYear2 = false;
+            Configure.CalcGradeYear3 = true; //三年級
+            Configure.CalcGradeYear4 = false;
+            Configure.DoNotSaveIt = true;
+            Configure.use原始成績 = true;//原始成績
+            Configure.use補考成績 = false;
+            Configure.use重修成績 = false;
+            Configure.use手動調整成績 = false;
+            Configure.use學年調整成績 = false;
+            Configure.計算學業成績排名 = true;
+            Configure.WithCalSemesterScoreRank = true;
+            Configure.RankFilterUseScoreList.Add("原始成績");
+            //foreach (string SubjectName in SubjectNameList)//所有科目
+            foreach (ListViewItem lvi in lvwSubjectPri.CheckedItems)
+            {
+                string SubjectName = lvi.Text;
+                Configure.useSubjectPrintList.Add(SubjectName);
+                Configure.useSubjecOrder1List.Add(SubjectName);
+                Configure.useSubjecOrder2List.Add(SubjectName);
+            }
+            Configure.Name = "班級歷年成績單";
+            Configure.SortGradeYear = "三年級";
+            Configure.useGradeSemesterList.Add("11");
+            Configure.useGradeSemesterList.Add("12");
+            Configure.useGradeSemesterList.Add("21");
+            Configure.useGradeSemesterList.Add("22");
+            Configure.RankFilterGradeSemeterList.Add("一上");
+            Configure.RankFilterGradeSemeterList.Add("一下");
+            Configure.RankFilterGradeSemeterList.Add("二上");
+            Configure.RankFilterGradeSemeterList.Add("二下");
+            Configure.useGradeSemesterList.Add("31");
+            Configure.RankFilterGradeSemeterList.Add("三上");
+            Configure.useGradeSemesterList.Add("32");
+            Configure.RankFilterGradeSemeterList.Add("三下");
+            Configure.CheckExportStudent = false;
+            Configure.NotRankTag = cboRankRilter.Text;
+            Configure.Rank1Tag = cboTagRank1.Text;
+            Configure.Rank2Tag = cboTagRank2.Text;
+            Configure.RankFilterTagName = cboRankRilter.Text;
+            if (Configure.Template == null)
+                Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+
+
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+            Configure.Save();
+            this.Close();
+        }
+
+        private void cbxSubjSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lvi in lvwSubjectPri.Items)
+                lvi.Checked = cbxSubjSelectAll.Checked;            
         }
 
         private void lnkDownload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -113,19 +215,26 @@ namespace SHStaticRank2.Data.StudentScoreReport
                 }
             }
             try
-            {                
-                if (this.Configure.Template== null)
+            {
+                if (this.Configure.Template == null)
                 {
-                    //System.IO.FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-                    //stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
-                    //stream.Flush();
-                    //stream.Close();
-                    //this.Configure.Template.Save(stream, Aspose.Words.SaveFormat.Doc);
-                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
-                    
+                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+
                 }
                 else
+                {
+                    //計算檔案大小
+                    MemoryStream ms = new MemoryStream();
+                    this.Configure.Template.Save(ms, SaveFormat.Doc);
+                    byte[] bb = ms.ToArray();
+
+                    double bbSize = (bb.Count() / 1024);
+
+                    if(bbSize<30)
+                        Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+
                     this.Configure.Template.Save(path, SaveFormat.Doc);
+                }
 
                 System.Diagnostics.Process.Start(path);
             }
@@ -141,7 +250,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
                     {
                         //document.Save(sd.FileName, Aspose.Words.SaveFormat.Doc);
                         System.IO.FileStream stream = new FileStream(sd.FileName, FileMode.Create, FileAccess.Write);
-                        stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
+                        stream.Write(Properties.Resources.高中部班級歷年成績單, 0, Properties.Resources.高中部班級歷年成績單.Length);
                         stream.Flush();
                         stream.Close();
 
@@ -171,15 +280,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
             {
                 try
                 {
-                    this.Configure.Template = new Aspose.Words.Document(dialog.FileName);
-                    //// 計算檔案大小
-                    //MemoryStream ms = new MemoryStream();
-                    //this.Configure.Template.Save(ms, SaveFormat.Pdf);
-                    //byte[] bb = ms.ToArray();
-
-                    //double bbSize = (bb.Count() / 1024);
-                    //if (bbSize >= 200)
-                    //    MsgBox.Show("上傳範本檔案過大，產生PDF檔案大小可能超過200K。");
+                    this.Configure.Template = new Aspose.Words.Document(dialog.FileName);                   
 
                     List<string> fields = new List<string>(this.Configure.Template.MailMerge.GetFieldNames());
                     this.Configure.SubjectLimit = 0;
@@ -228,108 +329,6 @@ namespace SHStaticRank2.Data.StudentScoreReport
                     return;
                 }
             }
-        }
-
-        private void StudentScoreReport_Load(object sender, EventArgs e)
-        {
-
-            cbxSubjSelectAll.Checked = true;
-            FISCA.LogAgent.ApplicationLog.Log("成績", "計算", "計算學生多學期成績單。");            
-            List<string> studIDList = new List<string>();
-            QueryHelper qh = new QueryHelper();
-
-            string strSQ = @"SELECT DISTINCT tmp.subject
-FROM xpath_table( 'id',
-				'''<root>''||score_info||''</root>''',
-				'sems_subj_score',
-				'/root/SemesterSubjectScoreInfo/Subject/@科目',
-				'ref_student_id IN ( select student.id from student 
-									INNER JOIN class ON student.ref_class_id = class.id 
-									WHERE student.status=1 AND class.grade_year = 3 )'
-				) 
-AS tmp(id int, subject varchar(200))";
-            DataTable dt = qh.Select(strSQ);
-            foreach (DataRow dr in dt.Rows)
-                SubjectNameList.Add(dr[0].ToString());
-            SubjectNameList.Sort(new StringComparer("國文"
-                                , "英文"
-                                , "數學"
-                                , "理化"
-                                , "生物"
-                                , "社會"
-                                , "物理"
-                                , "化學"
-                                , "歷史"
-                                , "地理"
-                                , "公民"));
-
-            // 填入科目名稱
-            foreach (string name in SubjectNameList)
-            {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = name;
-                lvi.Name = name;
-                lvi.Checked = true;
-                lvwSubjectPri.Items.Add(lvi);
-            }
-            
-        }
-
-        private void buttonX1_Click(object sender, EventArgs e)
-        {
-            Configure.CalcGradeYear1 = false;
-            Configure.CalcGradeYear2 = false;
-            Configure.CalcGradeYear3 = true; //三年級
-            Configure.CalcGradeYear4 = false;
-            Configure.DoNotSaveIt = true;
-            Configure.use原始成績 = true;//原始成績
-            Configure.use補考成績 = false;
-            Configure.use重修成績 = false;
-            Configure.use手動調整成績 = false;
-            Configure.use學年調整成績 = false;
-            Configure.計算學業成績排名 = true;
-            Configure.WithCalSemesterScoreRank = true;
-            Configure.RankFilterUseScoreList.Add("原始成績");
-            //foreach (string SubjectName in SubjectNameList)//所有科目
-            foreach(ListViewItem lvi in lvwSubjectPri.CheckedItems)
-            {
-                string SubjectName = lvi.Text;
-                Configure.useSubjectPrintList.Add(SubjectName);
-                Configure.useSubjecOrder1List.Add(SubjectName);
-                Configure.useSubjecOrder2List.Add(SubjectName);
-            }
-            Configure.Name = "學生個人歷年成績單";
-            Configure.SortGradeYear = "三年級";
-            Configure.useGradeSemesterList.Add("11");
-            Configure.useGradeSemesterList.Add("12");
-            Configure.useGradeSemesterList.Add("21");
-            Configure.useGradeSemesterList.Add("22");
-            Configure.RankFilterGradeSemeterList.Add("一上");
-            Configure.RankFilterGradeSemeterList.Add("一下");
-            Configure.RankFilterGradeSemeterList.Add("二上");
-            Configure.RankFilterGradeSemeterList.Add("二下");           
-            Configure.useGradeSemesterList.Add("31");
-            Configure.RankFilterGradeSemeterList.Add("三上");
-            Configure.useGradeSemesterList.Add("32");
-            Configure.RankFilterGradeSemeterList.Add("三下");
-            Configure.CheckExportStudent = true;
-            Configure.NotRankTag = cboRankRilter.Text;
-            Configure.Rank1Tag = cboTagRank1.Text;
-            Configure.Rank2Tag = cboTagRank2.Text;
-            Configure.RankFilterTagName = cboRankRilter.Text;
-            if ( Configure.Template == null )
-                Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
-                      
-
-            DialogResult = System.Windows.Forms.DialogResult.OK;
-            Configure.Save();
-            this.Close();
-        }
-
-        private void cbxSubjSelectAll_CheckedChanged(object sender, EventArgs e)
-        {
-            foreach (ListViewItem lvi in lvwSubjectPri.Items)
-                lvi.Checked = cbxSubjSelectAll.Checked;            
         }
     }
 }
