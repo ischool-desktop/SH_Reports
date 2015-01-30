@@ -58,7 +58,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
                             classData.Add("學校名稱", students.Rows[0]["學校名稱"] + "");
                             classData.Add("科別", students.Rows[0]["科別"] + "");
                             classData.Add("班級", students.Rows[0]["班級"] + "");
-                            for (int i = 1; i <= 5; i++)
+                            for (int i = 1; i <= 6; i++)
                             {
                                 string name = "";
                                 if (students.Columns.Contains("科目名稱" + i))

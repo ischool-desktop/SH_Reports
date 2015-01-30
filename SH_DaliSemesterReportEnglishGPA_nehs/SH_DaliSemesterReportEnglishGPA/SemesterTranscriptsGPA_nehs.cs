@@ -375,7 +375,7 @@ namespace SH_DaliSemesterReportEnglishGPA_nehs
             else
             {
                 // 產生成績清單
-                if (Gobal.xlsStudentAvgScoreList.Count > 0)
+                if (Gobal.xlsStudentAvgScoreList.Count > 0 && Gobal.chkExportReport==false)
                 {
                     Workbook wb = new Workbook();
 

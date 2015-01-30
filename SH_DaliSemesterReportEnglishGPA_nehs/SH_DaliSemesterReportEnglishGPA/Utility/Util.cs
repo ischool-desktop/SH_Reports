@@ -36,28 +36,31 @@ namespace SH_DaliSemesterReportEnglishGPA_nehs
             //    }
             //}
 
-            try
+            if (Gobal.chkExportReport)
             {
-                wb.Save(inputReportName, FileFormatType.Excel2003);
-                //System.Diagnostics.Process.Start(path);
-            }
-            catch
-            {
-                //SaveFileDialog sd = new SaveFileDialog();
-                //sd.Title = "另存新檔";
-                //sd.FileName = reportName + ".xls";
-                //sd.Filter = "Excel 2003 相容檔案 (*.xls)|*.xls|所有檔案 (*.*)|*.*";
-                //if (sd.ShowDialog() == DialogResult.OK)
-                //{
-                //    try
-                //    {
-                //        doc.Save(path, FileFormatType.Excel2003);
-                //    }
-                //    catch
-                //    {
-                        throw new Exception("指定路徑無法存檔，權限不足或檔案已開啟。");
-                //    }
-                //}
+                try
+                {
+                    wb.Save(inputReportName, FileFormatType.Excel2003);
+                    //System.Diagnostics.Process.Start(path);
+                }
+                catch
+                {
+                    //SaveFileDialog sd = new SaveFileDialog();
+                    //sd.Title = "另存新檔";
+                    //sd.FileName = reportName + ".xls";
+                    //sd.Filter = "Excel 2003 相容檔案 (*.xls)|*.xls|所有檔案 (*.*)|*.*";
+                    //if (sd.ShowDialog() == DialogResult.OK)
+                    //{
+                    //    try
+                    //    {
+                    //        doc.Save(path, FileFormatType.Excel2003);
+                    //    }
+                    //    catch
+                    //    {
+                    throw new Exception("指定路徑無法存檔，權限不足或檔案已開啟。");
+                    //    }
+                    //}
+                }
             }
         }
 

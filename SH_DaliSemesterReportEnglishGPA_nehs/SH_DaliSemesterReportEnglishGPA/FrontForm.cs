@@ -313,6 +313,14 @@ namespace SH_DaliSemesterReportEnglishGPA_nehs
             if (_error2)
                 return;
 
+
+            if (MessageBox.Show("選 是 產生成績單，選 否 產生清單。 ", "請選擇產生資料", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+            {
+                Gobal.chkExportReport = true;
+            }
+            else
+                Gobal.chkExportReport = false;
+
             _GPAText = txtGPA.Text;
             _CGPAText = txtCGPA.Text;
             _HGPAText = txtHGPA.Text;

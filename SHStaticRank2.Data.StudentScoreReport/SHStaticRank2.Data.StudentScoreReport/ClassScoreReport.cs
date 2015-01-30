@@ -129,6 +129,12 @@ AS tmp(id int, subject varchar(200))";
 
         private void buttonX1_Click(object sender, EventArgs e)
         {
+
+            if (lvwSubjectPri.CheckedItems.Count > 6)
+            {
+                MsgBox.Show("最多只能選6科");
+                return;
+            }
             Configure.CalcGradeYear1 = false;
             Configure.CalcGradeYear2 = false;
             Configure.CalcGradeYear3 = true; //三年級
