@@ -46,6 +46,7 @@
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cbxScoreType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.groupPanel3.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -61,9 +62,9 @@
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.Location = new System.Drawing.Point(326, 144);
             this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(222, 21);
+            this.labelX6.Size = new System.Drawing.Size(235, 21);
             this.labelX6.TabIndex = 52;
-            this.labelX6.Text = "1.排名對象：三年級，學生狀態:一般";
+            this.labelX6.Text = "1.排名對象：    三年級，學生狀態:一般";
             // 
             // btnExit
             // 
@@ -315,9 +316,9 @@
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.Location = new System.Drawing.Point(326, 171);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(138, 21);
+            this.labelX2.Size = new System.Drawing.Size(85, 21);
             this.labelX2.TabIndex = 53;
-            this.labelX2.Text = "2.採計成績：原始成績";
+            this.labelX2.Text = "2.採計成績：";
             // 
             // groupPanel2
             // 
@@ -365,11 +366,25 @@
             this.groupPanel2.TabIndex = 46;
             this.groupPanel2.Text = "排名類別設定";
             // 
+            // cbxScoreType
+            // 
+            this.cbxScoreType.DisplayMember = "Text";
+            this.cbxScoreType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbxScoreType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxScoreType.FormattingEnabled = true;
+            this.cbxScoreType.ItemHeight = 19;
+            this.cbxScoreType.Location = new System.Drawing.Point(417, 169);
+            this.cbxScoreType.Name = "cbxScoreType";
+            this.cbxScoreType.Size = new System.Drawing.Size(160, 25);
+            this.cbxScoreType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbxScoreType.TabIndex = 54;
+            // 
             // ClassScoreReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 274);
+            this.Controls.Add(this.cbxScoreType);
             this.Controls.Add(this.labelX6);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblMappingTemp);
@@ -412,5 +427,6 @@
         private DevComponents.DotNetBar.LabelX labelX5;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel2;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbxScoreType;
     }
 }

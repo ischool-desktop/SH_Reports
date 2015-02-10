@@ -114,18 +114,38 @@ namespace SHStaticRank2.Data.StudentScoreReport
             }
             try
             {                
-                if (this.Configure.Template== null)
-                {
-                    //System.IO.FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-                    //stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
-                    //stream.Flush();
-                    //stream.Close();
-                    //this.Configure.Template.Save(stream, Aspose.Words.SaveFormat.Doc);
-                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
+                //if (this.Configure.Template== null)
+                //{
+                //    //System.IO.FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+                //    //stream.Write(Properties.Resources.高中部歷年成績單_5學期, 0, Properties.Resources.高中部歷年成績單_5學期.Length);
+                //    //stream.Flush();
+                //    //stream.Close();
+                //    //this.Configure.Template.Save(stream, Aspose.Words.SaveFormat.Doc);
+                //    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
                     
+                //}
+                //else
+                //    this.Configure.Template.Save(path, SaveFormat.Doc);
+
+                if (this.Configure.Template == null)
+                {
+                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
+
                 }
                 else
+                {
+                    //計算檔案大小
+                    MemoryStream ms = new MemoryStream();
+                    this.Configure.Template.Save(ms, SaveFormat.Doc);
+                    byte[] bb = ms.ToArray();
+
+                    double bbSize = (bb.Count() / 1024);
+
+                    if (bbSize < 30)
+                        Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
+
                     this.Configure.Template.Save(path, SaveFormat.Doc);
+                }
 
                 System.Diagnostics.Process.Start(path);
             }
@@ -232,8 +252,12 @@ namespace SHStaticRank2.Data.StudentScoreReport
 
         private void StudentScoreReport_Load(object sender, EventArgs e)
         {
+            cbxScoreType.Items.Add("擇優成績");
+            cbxScoreType.Items.Add("原始成績");
+            cbxScoreType.Text = "擇優成績";
+            cbxScoreType.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            cbxSubjSelectAll.Checked = true;
+            cbxSubjSelectAll.Checked = false;
             FISCA.LogAgent.ApplicationLog.Log("成績", "計算", "計算學生多學期成績單。");            
             List<string> studIDList = new List<string>();
             QueryHelper qh = new QueryHelper();
@@ -269,7 +293,7 @@ AS tmp(id int, subject varchar(200))";
                 ListViewItem lvi = new ListViewItem();
                 lvi.Text = name;
                 lvi.Name = name;
-                lvi.Checked = true;
+                lvi.Checked = false;
                 lvwSubjectPri.Items.Add(lvi);
             }
             
@@ -282,14 +306,32 @@ AS tmp(id int, subject varchar(200))";
             Configure.CalcGradeYear3 = true; //三年級
             Configure.CalcGradeYear4 = false;
             Configure.DoNotSaveIt = true;
-            Configure.use原始成績 = true;//原始成績
-            Configure.use補考成績 = false;
-            Configure.use重修成績 = false;
-            Configure.use手動調整成績 = false;
-            Configure.use學年調整成績 = false;
             Configure.計算學業成績排名 = true;
             Configure.WithCalSemesterScoreRank = true;
-            Configure.RankFilterUseScoreList.Add("原始成績");
+
+            if (cbxScoreType.Text == "擇優成績")
+            {
+                Configure.use原始成績 = true;//原始成績
+                Configure.use補考成績 = true;
+                Configure.use重修成績 = true;
+                Configure.use手動調整成績 = true;
+                Configure.use學年調整成績 = true;
+                Configure.RankFilterUseScoreList.Add("原始成績");
+                Configure.RankFilterUseScoreList.Add("補考成績");
+                Configure.RankFilterUseScoreList.Add("重修成績");
+                Configure.RankFilterUseScoreList.Add("手動調整成績");
+                Configure.RankFilterUseScoreList.Add("學年調整成績");
+            }
+            else
+            {
+                Configure.use原始成績 = true;//原始成績
+                Configure.use補考成績 = false;
+                Configure.use重修成績 = false;
+                Configure.use手動調整成績 = false;
+                Configure.use學年調整成績 = false;
+                Configure.RankFilterUseScoreList.Add("原始成績");
+            }
+            
             //foreach (string SubjectName in SubjectNameList)//所有科目
             foreach(ListViewItem lvi in lvwSubjectPri.CheckedItems)
             {
@@ -317,8 +359,23 @@ AS tmp(id int, subject varchar(200))";
             Configure.Rank1Tag = cboTagRank1.Text;
             Configure.Rank2Tag = cboTagRank2.Text;
             Configure.RankFilterTagName = cboRankRilter.Text;
-            if ( Configure.Template == null )
+            if (this.Configure.Template == null)
+            {
                 Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
+
+            }
+            else
+            {
+                //計算檔案大小
+                MemoryStream ms = new MemoryStream();
+                this.Configure.Template.Save(ms, SaveFormat.Doc);
+                byte[] bb = ms.ToArray();
+
+                double bbSize = (bb.Count() / 1024);
+
+                if (bbSize < 30)
+                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));                
+            }
                       
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
