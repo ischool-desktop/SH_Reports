@@ -29,7 +29,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
 
             buttonX1.Enabled = false;
             _TagConfigRecords = K12.Data.TagConfig.SelectByCategory(TagCategory.Student);
-            List<Configure> lc = _AccessHelper.Select<Configure>("Name = '班級人歷年成績單'");
+            List<Configure> lc = _AccessHelper.Select<Configure>("Name = '班級歷年成績單'");
             this.Configure = (lc.Count >= 1) ? lc[0] : new Configure() { Name = "班級歷年成績單" };
             if (lc.Count >= 1)
                 this.Configure.Decode();

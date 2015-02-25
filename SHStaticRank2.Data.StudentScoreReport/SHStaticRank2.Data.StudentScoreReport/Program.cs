@@ -44,7 +44,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
                     CalcMutilSemeSubjectRank.OneClassCompleted += delegate
                     {
 
-                        if (confClass.Configure.CheckExportStudent == false && chkClass)
+                        if ( confClass.Configure.Name=="班級歷年成績單" &&  confClass.Configure.CheckExportStudent == false && chkClass)
                         {
 
                             DataTable students = CalcMutilSemeSubjectRank._table.Copy();
