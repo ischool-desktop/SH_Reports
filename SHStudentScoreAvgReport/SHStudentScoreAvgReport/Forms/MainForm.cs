@@ -117,8 +117,9 @@ namespace SHStudentScoreAvgReport.Forms
             _bgWork.ReportProgress(80);
             // 計算排名
             foreach (string ClassName in _ClassStudentScoreDict.Keys)
-            { 
-                string sortName="班級總分排名"+ClassName;
+            {
+                #region 班級總分排名
+                string sortName = "班級總分排名" + ClassName;
                 if (!Cal._RanksTmp.ContainsKey(sortName))
                     Cal._RanksTmp.Add(sortName, new List<decimal>());
 
@@ -128,6 +129,21 @@ namespace SHStudentScoreAvgReport.Forms
                 // 排名
                 Cal._RanksTmp[sortName].Sort();
                 Cal._RanksTmp[sortName].Reverse();
+                #endregion
+
+                #region 班級智育排名
+                string sortName1 = "班級智育排名" + ClassName;
+                if (!Cal._RanksTmp.ContainsKey(sortName1))
+                    Cal._RanksTmp.Add(sortName1, new List<decimal>());
+
+                foreach (string studID in _ClassStudentScoreDict[ClassName].Keys)
+                    if (_ClassStudentScoreDict[ClassName][studID].GetEntryScore("智育").HasValue)
+                        Cal._RanksTmp[sortName1].Add(_ClassStudentScoreDict[ClassName][studID].GetEntryScore("智育").Value);
+
+                // 排名
+                Cal._RanksTmp[sortName1].Sort();
+                Cal._RanksTmp[sortName1].Reverse();
+                #endregion
             }
 
             _bgWork.ReportProgress(90);
@@ -219,14 +235,18 @@ namespace SHStudentScoreAvgReport.Forms
                     wst.Cells[rowIdx, 0].PutValue(ss.SeatNo);
                     wst.Cells[rowIdx, 1].PutValue(ss.Name);
                     if (ss.GetEntryScore("智育").HasValue)
+                    {
                         wst.Cells[rowIdx, 2].PutValue(ss.GetEntryScore("智育").Value);
+                        wst.Cells[rowIdx, 8].PutValue(ss.GetRank("班級智育排名", ss.GetEntryScore("智育").Value));
+                    }
                     if (ss.GetEntryScore("體育").HasValue)
                         wst.Cells[rowIdx, 3].PutValue(ss.GetEntryScore("體育").Value);
                     if (ss.GetEntryScore("美育").HasValue)
                         wst.Cells[rowIdx, 4].PutValue(ss.GetEntryScore("美育").Value);
                     wst.Cells[rowIdx, 5].PutValue(ss.GetSumScore());
                     wst.Cells[rowIdx, 6].PutValue(ss.GetAvgScore());
-                    wst.Cells[rowIdx, 7].PutValue(ss.GetRank("班級總分排名"));
+                    wst.Cells[rowIdx, 7].PutValue(ss.GetRank("班級總分排名", ss.GetSumScore()));
+                    
                     rowIdx++;
                 }
             }

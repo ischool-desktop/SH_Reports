@@ -99,13 +99,13 @@ namespace SHStudentScoreAvgReport.DAO
         /// 取得排名
         /// </summary>
         /// <returns></returns>
-        public int GetRank(string name)
+        public int GetRank(string name,decimal score)
         {
             int r=0;
             string key = name + ClassName;
             if (Cal._RanksTmp.ContainsKey(key))
             {
-                r = Cal._RanksTmp[key].IndexOf(GetSumScore()) + 1;
+                r = Cal._RanksTmp[key].IndexOf(score) + 1;
             }
 
             return r;
