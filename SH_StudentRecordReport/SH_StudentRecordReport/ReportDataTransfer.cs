@@ -507,8 +507,10 @@ namespace SH_StudentRecordReport
 
                         dicSHSubjectSemesterScoreInfos[kv.Value] = dataPool.GetPersonalSemesterSubjectScoreInfo(student.ID, kv.Key, kv.Value);
                     }
-                    //  學年學分制排序上下學期與學年成績
-                    if (allSchoolYearSemesterPair.Count > 1 && templateNumber != 3 && templateNumber != 4)
+                    //old 
+                    //if (allSchoolYearSemesterPair.Count > 1 && templateNumber != 3 && templateNumber != 4)
+                    //  學年學分制排序上下學期與學年成績 ,高職也包含學年學分                   
+                    if (allSchoolYearSemesterPair.Count > 1)
                     {
                         dicSHSubjectSemesterScoreInfos[2] = dataPool.SortSHSubjectSemesterScore(dicSHSubjectSemesterScoreInfos[1], dicSHSubjectSemesterScoreInfos[2]);
                     }
