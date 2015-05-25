@@ -373,8 +373,8 @@ namespace SH_StudentRecordReport
         }
 
         /****<學生類別 一年級及格標準=\"60\" 一年級補考標準=\"0\" 三年級及格標準=\"60\" 三年級補考標準=\"0\" 二年級及格標準=\"60\" 二年級補考標準=\"0\" 四年級及格標準=\"60\" 四年級補考標準=\"0\" 類別=\"預設\" />
-         * 比對學生成績身份，若比對不到則及格標準使用「預設」
-         ****/
+                 * 比對學生成績身份，若比對不到則及格標準使用「預設」
+                 ****/
         public decimal GetPassingStandard(string pStudentID, int? pSchoolYear)
         {
             pSchoolYear = pSchoolYear.HasValue ? pSchoolYear.Value : 0;
@@ -398,7 +398,7 @@ namespace SH_StudentRecordReport
                 return passingStandard;
 
             XDocument doc = XDocument.Parse("<root>" + _PersonalSHScoreCalcRuleRecordInfo[pStudentID].Content.InnerXml + "</root>");
-            
+
             if (doc.Document == null)
                 return passingStandard;
 
@@ -414,17 +414,24 @@ namespace SH_StudentRecordReport
                 {
                     if (pStudentTagFullName.Contains(x.Attribute("類別").Value) || pStudentTagPrefix.Contains(x.Attribute("類別").Value))
                     {
-                        if (x.Attribute(NumericToChinese(pSchoolYear) + "年級及格標準") != null)
+                        try
                         {
-                            bool result = decimal.TryParse(x.Attribute(NumericToChinese(pSchoolYear) + "年級及格標準").Value, out tmpPassingStandard);
-                            if (result)
+                            if (x.Attribute(NumericToChinese(pSchoolYear) + "年級及格標準") != null)
                             {
-                                if (tmpPassingStandard < passingStandard)
+                                bool result = decimal.TryParse(x.Attribute(NumericToChinese(pSchoolYear) + "年級及格標準").Value, out tmpPassingStandard);
+                                if (result)
                                 {
-                                    //youGotIt = true;
-                                    passingStandard = tmpPassingStandard;
+                                    if (tmpPassingStandard < passingStandard)
+                                    {
+                                        //youGotIt = true;
+                                        passingStandard = tmpPassingStandard;
+                                    }
                                 }
                             }
+                        }
+                        catch
+                        {
+                            return passingStandard;
                         }
                     }
                 }
@@ -450,7 +457,6 @@ namespace SH_StudentRecordReport
 
             return passingStandard;
         }
-
         public string TransferStudentTagToIdentity(string pStudentID)
         {
             string identity = "一般生";
@@ -486,7 +492,7 @@ namespace SH_StudentRecordReport
             if (pNumber > 10 || pNumber < 0)
                 throw new Exception("轉換的數字必須介於 0~10");
 
-            char[] number = new char[] {'○', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'};
+            char[] number = new char[] { '○', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十' };
 
             return number[qNumber];
         }
@@ -1043,7 +1049,15 @@ namespace SH_StudentRecordReport
 
         public List<SHSubjectYearScoreInfo> GetPersonalYearSubjectScoreInfo(Dictionary<int, List<SHSubjectSemesterScoreInfo>> dicSHSubjectSemesterScoreInfos)
         {
-            return _SHYearSubjectScoreInfo.GetPersonalYearSubjectScoreInfo(dicSHSubjectSemesterScoreInfos);
+            try
+            {
+                return _SHYearSubjectScoreInfo.GetPersonalYearSubjectScoreInfo(dicSHSubjectSemesterScoreInfos);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            
         }
 
         public List<SHSubjectYearScoreInfo> GetPersonalYearSubjectScoreInfo(string pStudentID, int pSchoolYear)
