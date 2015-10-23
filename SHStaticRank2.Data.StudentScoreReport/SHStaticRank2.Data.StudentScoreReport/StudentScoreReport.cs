@@ -12,6 +12,7 @@ using FISCA.Data;
 using Aspose.Words;
 using System.IO;
 using DevComponents.DotNetBar.Controls;
+using System.Xml.Linq;
 
 namespace SHStaticRank2.Data.StudentScoreReport
 {
@@ -250,6 +251,45 @@ namespace SHStaticRank2.Data.StudentScoreReport
             }
         }
 
+        private void LoadSubjectToDataGrid()
+        {
+            dgSubjMapping.Rows.Clear();
+            if (!string.IsNullOrWhiteSpace(Configure.SubjectMapping))
+            {
+                try
+                {
+                    XElement elmRoot = XElement.Parse(Configure.SubjectMapping);
+                    foreach(XElement item in elmRoot.Elements("Item"))
+                    {
+                        int rowIdx = dgSubjMapping.Rows.Add();
+                        dgSubjMapping.Rows[rowIdx].Cells[colSubject.Index].Value = item.Attribute("Subject").Value;
+                        dgSubjMapping.Rows[rowIdx].Cells[colSysSubject.Index].Value = item.Attribute("SysSubject").Value;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show("讀取科目對照失敗," + ex.Message);
+                }
+            }
+        }
+
+        private void SetSubjectFromDataGrid() 
+        {
+            XElement elmRoot = new XElement("Items");
+            foreach (DataGridViewRow dgvr in dgSubjMapping.Rows)
+            {
+                if (dgvr.IsNewRow)
+                    continue;
+
+                XElement elm = new XElement("Item");
+                elm.SetAttributeValue("Subject", dgvr.Cells[colSubject.Index].Value.ToString().Replace(" ", ""));
+                elm.SetAttributeValue("SysSubject",dgvr.Cells[colSysSubject.Index].Value.ToString().Replace(" ", ""));
+                elmRoot.Add(elm);
+            }
+
+            Configure.SubjectMapping = elmRoot.ToString();
+        }    
+
         private void StudentScoreReport_Load(object sender, EventArgs e)
         {
             cbxScoreType.Items.Add("擇優成績");
@@ -296,7 +336,9 @@ AS tmp(id int, subject varchar(200))";
                 lvi.Checked = false;
                 lvwSubjectPri.Items.Add(lvi);
             }
-            
+            // 載入對照表
+            LoadSubjectToDataGrid();
+           
         }
 
         private void buttonX1_Click(object sender, EventArgs e)
@@ -376,7 +418,9 @@ AS tmp(id int, subject varchar(200))";
                 if (bbSize < 30)
                     Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));                
             }
-                      
+
+            // 儲存對照
+            SetSubjectFromDataGrid();
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Configure.Save();
