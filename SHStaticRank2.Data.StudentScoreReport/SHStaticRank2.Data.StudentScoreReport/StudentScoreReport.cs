@@ -292,6 +292,8 @@ namespace SHStaticRank2.Data.StudentScoreReport
 
         private void StudentScoreReport_Load(object sender, EventArgs e)
         {
+
+            this.MaximumSize = this.MinimumSize = this.Size;
             cbxScoreType.Items.Add("擇優成績");
             cbxScoreType.Items.Add("原始成績");
             cbxScoreType.Text = "擇優成績";
@@ -343,6 +345,46 @@ AS tmp(id int, subject varchar(200))";
 
         private void buttonX1_Click(object sender, EventArgs e)
         {
+
+            #region 檢查回歸科目重複名稱設定
+            
+            // 檢查畫面資料是否重複
+            List<string> chkStr = new List<string>();
+            bool hasSame = false;
+            foreach (DataGridViewRow dgvr in dgSubjMapping.Rows)
+            {
+                if (dgvr.IsNewRow)
+                    continue;
+
+                foreach (DataGridViewCell dgvc in dgvr.Cells)
+                {
+                    if (dgvc.Value != null)
+                        if (dgvc.ColumnIndex == colSubject.Index)
+                        {
+                            string key = dgvc.Value.ToString().Replace(" ","");
+                            if (!chkStr.Contains(key))
+                                chkStr.Add(key);
+                            else
+                            {
+                                hasSame = true;
+                                break;
+                            }
+                        }
+                }
+
+                if (hasSame)
+                    break;
+            }
+
+            if (hasSame)
+            {
+                MsgBox.Show("回歸科目有重複名稱，請修改", "回歸科目名稱重複");
+                return;
+            }
+
+            #endregion
+
+
             Configure.CalcGradeYear1 = false;
             Configure.CalcGradeYear2 = false;
             Configure.CalcGradeYear3 = true; //三年級
@@ -431,6 +473,134 @@ AS tmp(id int, subject varchar(200))";
         {
             foreach (ListViewItem lvi in lvwSubjectPri.Items)
                 lvi.Checked = cbxSubjSelectAll.Checked;            
+        }
+
+        private void lnkDefault1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            #region 下載預設範本
+            string reportName = "多學期成績單樣板(學生個人歷年成績單)預設範本";
+            try
+            {
+                string path = Path.Combine(System.Windows.Forms.Application.StartupPath, "Reports");
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path = Path.Combine(path, reportName + ".doc");
+
+                if (File.Exists(path))
+                {
+                    int i = 1;
+                    while (true)
+                    {
+                        string newPath = Path.GetDirectoryName(path) + "\\" + Path.GetFileNameWithoutExtension(path) + (i++) + Path.GetExtension(path);
+                        if (!File.Exists(newPath))
+                        {
+                            path = newPath;
+                            break;
+                        }
+                    }
+                }
+
+                Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本));
+                docTemp.Save(path, SaveFormat.Doc);
+                System.Diagnostics.Process.Start(path);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.SaveFileDialog sd = new System.Windows.Forms.SaveFileDialog();
+                sd.Title = "另存新檔";
+                sd.FileName = reportName + ".doc";
+                sd.Filter = "Word檔案 (*.doc)|*.doc|所有檔案 (*.*)|*.*";
+                if (sd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+
+                        Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本));
+                        docTemp.Save(sd.FileName);
+                    }
+                    catch
+                    {
+                        FISCA.Presentation.Controls.MsgBox.Show("指定路徑無法存取。", "建立檔案失敗", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+            }
+            #endregion
+        }
+
+        private void lnkDefault2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            #region 下載回歸科目預設範本
+            string reportName = "多學期成績單樣板(學生個人歷年成績單)回歸科目預設範本";
+            try
+            {
+                string path = Path.Combine(System.Windows.Forms.Application.StartupPath, "Reports");
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                path = Path.Combine(path, reportName + ".doc");
+
+                if (File.Exists(path))
+                {
+                    int i = 1;
+                    while (true)
+                    {
+                        string newPath = Path.GetDirectoryName(path) + "\\" + Path.GetFileNameWithoutExtension(path) + (i++) + Path.GetExtension(path);
+                        if (!File.Exists(newPath))
+                        {
+                            path = newPath;
+                            break;
+                        }
+                    }
+                }
+
+                Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本));
+                docTemp.Save(path, SaveFormat.Doc);
+                System.Diagnostics.Process.Start(path);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.SaveFileDialog sd = new System.Windows.Forms.SaveFileDialog();
+                sd.Title = "另存新檔";
+                sd.FileName = reportName + ".doc";
+                sd.Filter = "Word檔案 (*.doc)|*.doc|所有檔案 (*.*)|*.*";
+                if (sd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+
+                        Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本));
+                        docTemp.Save(sd.FileName);
+                    }
+                    catch
+                    {
+                        FISCA.Presentation.Controls.MsgBox.Show("指定路徑無法存取。", "建立檔案失敗", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+            }
+            #endregion
+        }
+
+        private void dgSubjMapping_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            //dgSubjMapping.EndEdit();            
+            //// 檢查對照
+            //if (dgSubjMapping.CurrentCell.ColumnIndex == colSysSubject.Index)
+            //{
+            //    dgSubjMapping.CurrentCell.ErrorText = "";
+            //    if (dgSubjMapping.CurrentCell.Value != null)
+            //    {
+            //        string value = dgSubjMapping.CurrentCell.Value.ToString();
+            //        // 同時包含 , +
+            //        if (value.IndexOf(",") > 0 && value.IndexOf("+") > 0)
+            //        {
+            //            dgSubjMapping.CurrentCell.ErrorText = "不能同時使用,+";
+            //        }
+            //    }
+            //}
+            //dgSubjMapping.BeginEdit(false);
         }
     }
 }
