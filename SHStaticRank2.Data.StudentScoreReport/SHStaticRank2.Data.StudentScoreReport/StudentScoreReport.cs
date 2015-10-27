@@ -24,6 +24,10 @@ namespace SHStaticRank2.Data.StudentScoreReport
         public Configure Configure { get; private set; }
         private Dictionary<string, int> _SpecialListViewItem = new Dictionary<string, int>();
 
+        string _strItem1 = "使用自訂範本";
+        string _strItem2 = "使用預設範本";
+        string _strItem3 = "使用預設回歸科目範本";
+
         public StudentScoreReport()
         {
             InitializeComponent();
@@ -281,9 +285,27 @@ namespace SHStaticRank2.Data.StudentScoreReport
                 if (dgvr.IsNewRow)
                     continue;
 
+                if (dgvr.Cells[colSubject.Index].Value == null)
+                    continue;
+
+                string subjName = dgvr.Cells[colSubject.Index].Value.ToString().Replace(" ", "");
+
+                if (string.IsNullOrEmpty(subjName))
+                    continue;
+
                 XElement elm = new XElement("Item");
-                elm.SetAttributeValue("Subject", dgvr.Cells[colSubject.Index].Value.ToString().Replace(" ", ""));
-                elm.SetAttributeValue("SysSubject",dgvr.Cells[colSysSubject.Index].Value.ToString().Replace(" ", ""));
+                elm.SetAttributeValue("Subject", subjName);
+
+                // 如果系統內沒輸入預設和回歸相同
+                string SysSubjName = subjName;
+                if (dgvr.Cells[colSysSubject.Index].Value != null)
+                { 
+                    string ss=dgvr.Cells[colSysSubject.Index].Value.ToString().Replace(" ", "");
+                    if (!string.IsNullOrEmpty(ss))
+                        SysSubjName = ss;
+                }
+
+                elm.SetAttributeValue("SysSubject",SysSubjName);
                 elmRoot.Add(elm);
             }
 
@@ -298,6 +320,12 @@ namespace SHStaticRank2.Data.StudentScoreReport
             cbxScoreType.Items.Add("原始成績");
             cbxScoreType.Text = "擇優成績";
             cbxScoreType.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            cboUseTemplae.Items.Add(_strItem1);
+            cboUseTemplae.Items.Add(_strItem2);
+            cboUseTemplae.Items.Add(_strItem3);
+            cboUseTemplae.Text = _strItem1;
+            cboUseTemplae.DropDownStyle = ComboBoxStyle.DropDownList;
 
             cbxSubjSelectAll.Checked = false;
             FISCA.LogAgent.ApplicationLog.Log("成績", "計算", "計算學生多學期成績單。");            
@@ -443,9 +471,10 @@ AS tmp(id int, subject varchar(200))";
             Configure.Rank1Tag = cboTagRank1.Text;
             Configure.Rank2Tag = cboTagRank2.Text;
             Configure.RankFilterTagName = cboRankRilter.Text;
+
             if (this.Configure.Template == null)
             {
-                Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));
+                Configure.Template = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本)); 
 
             }
             else
@@ -458,14 +487,22 @@ AS tmp(id int, subject varchar(200))";
                 double bbSize = (bb.Count() / 1024);
 
                 if (bbSize < 30)
-                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部歷年成績單_5學期));                
+                    Configure.Template = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本));                
             }
-
+            
             // 儲存對照
             SetSubjectFromDataGrid();
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Configure.Save();
+
+            // 使用非自訂範本切換但是不儲存
+            if (cboUseTemplae.Text == _strItem2)
+                Configure.Template = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本));
+            
+            if(cboUseTemplae.Text==_strItem3)
+                Configure.Template = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本));
+
             this.Close();
         }
 

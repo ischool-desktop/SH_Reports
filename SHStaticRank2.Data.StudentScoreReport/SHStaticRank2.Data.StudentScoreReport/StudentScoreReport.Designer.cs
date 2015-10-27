@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cboTagRank1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -54,6 +54,8 @@
             this.cbxScoreType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.lnkDefault1 = new System.Windows.Forms.LinkLabel();
             this.lnkDefault2 = new System.Windows.Forms.LinkLabel();
+            this.cboUseTemplae = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSubjMapping)).BeginInit();
@@ -232,14 +234,14 @@
             this.dgSubjMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSubject,
             this.colSysSubject});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgSubjMapping.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgSubjMapping.Location = new System.Drawing.Point(300, 56);
             this.dgSubjMapping.Name = "dgSubjMapping";
@@ -351,7 +353,7 @@
             // 
             this.lblMappingTemp.AutoSize = true;
             this.lblMappingTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lblMappingTemp.Location = new System.Drawing.Point(505, 362);
+            this.lblMappingTemp.Location = new System.Drawing.Point(162, 402);
             this.lblMappingTemp.Name = "lblMappingTemp";
             this.lblMappingTemp.Size = new System.Drawing.Size(112, 17);
             this.lblMappingTemp.TabIndex = 41;
@@ -363,7 +365,7 @@
             // 
             this.lnkUpload.AutoSize = true;
             this.lnkUpload.BackColor = System.Drawing.Color.Transparent;
-            this.lnkUpload.Location = new System.Drawing.Point(431, 362);
+            this.lnkUpload.Location = new System.Drawing.Point(88, 402);
             this.lnkUpload.Name = "lnkUpload";
             this.lnkUpload.Size = new System.Drawing.Size(60, 17);
             this.lnkUpload.TabIndex = 40;
@@ -375,7 +377,7 @@
             // 
             this.lnkDownload.AutoSize = true;
             this.lnkDownload.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDownload.Location = new System.Drawing.Point(364, 362);
+            this.lnkDownload.Location = new System.Drawing.Point(21, 402);
             this.lnkDownload.Name = "lnkDownload";
             this.lnkDownload.Size = new System.Drawing.Size(60, 17);
             this.lnkDownload.TabIndex = 39;
@@ -435,7 +437,7 @@
             this.cbxScoreType.ItemHeight = 19;
             this.cbxScoreType.Location = new System.Drawing.Point(451, 326);
             this.cbxScoreType.Name = "cbxScoreType";
-            this.cbxScoreType.Size = new System.Drawing.Size(160, 25);
+            this.cbxScoreType.Size = new System.Drawing.Size(181, 25);
             this.cbxScoreType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbxScoreType.TabIndex = 45;
             // 
@@ -443,7 +445,7 @@
             // 
             this.lnkDefault1.AutoSize = true;
             this.lnkDefault1.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDefault1.Location = new System.Drawing.Point(365, 399);
+            this.lnkDefault1.Location = new System.Drawing.Point(312, 402);
             this.lnkDefault1.Name = "lnkDefault1";
             this.lnkDefault1.Size = new System.Drawing.Size(86, 17);
             this.lnkDefault1.TabIndex = 46;
@@ -455,7 +457,7 @@
             // 
             this.lnkDefault2.AutoSize = true;
             this.lnkDefault2.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDefault2.Location = new System.Drawing.Point(457, 399);
+            this.lnkDefault2.Location = new System.Drawing.Point(404, 402);
             this.lnkDefault2.Name = "lnkDefault2";
             this.lnkDefault2.Size = new System.Drawing.Size(138, 17);
             this.lnkDefault2.TabIndex = 47;
@@ -463,11 +465,41 @@
             this.lnkDefault2.Text = "下載回歸科目預設範本";
             this.lnkDefault2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDefault2_LinkClicked);
             // 
+            // cboUseTemplae
+            // 
+            this.cboUseTemplae.DisplayMember = "Text";
+            this.cboUseTemplae.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboUseTemplae.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUseTemplae.FormattingEnabled = true;
+            this.cboUseTemplae.ItemHeight = 19;
+            this.cboUseTemplae.Location = new System.Drawing.Point(451, 356);
+            this.cboUseTemplae.Name = "cboUseTemplae";
+            this.cboUseTemplae.Size = new System.Drawing.Size(181, 25);
+            this.cboUseTemplae.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cboUseTemplae.TabIndex = 49;
+            // 
+            // labelX8
+            // 
+            this.labelX8.AutoSize = true;
+            this.labelX8.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX8.BackgroundStyle.Class = "";
+            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX8.Location = new System.Drawing.Point(360, 358);
+            this.labelX8.Name = "labelX8";
+            this.labelX8.Size = new System.Drawing.Size(85, 21);
+            this.labelX8.TabIndex = 48;
+            this.labelX8.Text = "3.使用範本：";
+            // 
             // StudentScoreReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 434);
+            this.ClientSize = new System.Drawing.Size(801, 439);
+            this.Controls.Add(this.cboUseTemplae);
+            this.Controls.Add(this.labelX8);
             this.Controls.Add(this.lnkDefault2);
             this.Controls.Add(this.lnkDefault1);
             this.Controls.Add(this.cbxScoreType);
@@ -521,5 +553,7 @@
         private DevComponents.DotNetBar.LabelX labelX7;
         private System.Windows.Forms.LinkLabel lnkDefault1;
         private System.Windows.Forms.LinkLabel lnkDefault2;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cboUseTemplae;
+        private DevComponents.DotNetBar.LabelX labelX8;
     }
 }
