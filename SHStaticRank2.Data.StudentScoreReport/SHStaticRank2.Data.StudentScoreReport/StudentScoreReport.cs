@@ -368,8 +368,77 @@ AS tmp(id int, subject varchar(200))";
             }
             // 載入對照表
             LoadSubjectToDataGrid();
-           
+         
+            // 載入畫面選項
+            LoadUIConfig();
         }
+
+
+        private void LoadUIConfig()
+        {
+            try
+            {
+                if(!string.IsNullOrEmpty(Configure.UIConfigString))
+                {
+                    XElement elmRoot = XElement.Parse(Configure.UIConfigString);
+
+                    if (elmRoot != null)
+                    {
+                        if (elmRoot.Element("不排名學生類別") != null)
+                            cboRankRilter.Text = elmRoot.Element("不排名學生類別").Value;
+
+                        if (elmRoot.Element("類別排名1") != null)
+                            cboTagRank1.Text = elmRoot.Element("類別排名1").Value;
+
+                        if (elmRoot.Element("類別排名2") != null)
+                            cboTagRank2.Text = elmRoot.Element("類別排名2").Value;
+
+                        if (elmRoot.Element("採計成績") != null)
+                            cbxScoreType.Text = elmRoot.Element("採計成績").Value;
+
+                        if (elmRoot.Element("使用範本") != null)
+                            cboUseTemplae.Text = elmRoot.Element("使用範本").Value;
+
+                        // 勾選
+                        if (elmRoot.Element("列印科目") != null)
+                        {
+                            List<string> subList = elmRoot.Element("列印科目").Value.Split(',').ToList();
+                            foreach (ListViewItem lvi in lvwSubjectPri.Items)
+                            {
+                                if (subList.Contains(lvi.Text))
+                                    lvi.Checked = true;
+                            }
+                        }
+                    }
+                }
+                
+            }catch(Exception ex)
+            {
+                MsgBox.Show("載入設定檔錯誤," + ex.Message);
+            }
+        
+        }
+
+        /// <summary>
+        /// 設訂畫面到設定檔
+        /// </summary>
+        private void SetUIConfig()
+        {
+            XElement elmRoot = new XElement("UIConfig");
+            elmRoot.SetElementValue("不排名學生類別", cboRankRilter.Text);
+
+            List<string> SubList = new List<string>();
+            foreach (ListViewItem lvi in lvwSubjectPri.CheckedItems)
+                SubList.Add(lvi.Text);
+            string strSubj = string.Join(",", SubList.ToArray());
+            elmRoot.SetElementValue("列印科目", strSubj);
+            elmRoot.SetElementValue("類別排名1", cboTagRank1.Text);
+            elmRoot.SetElementValue("類別排名2", cboTagRank2.Text);
+            elmRoot.SetElementValue("採計成績", cbxScoreType.Text);
+            elmRoot.SetElementValue("使用範本", cboUseTemplae.Text);
+            Configure.UIConfigString = elmRoot.ToString();
+        }
+
 
         private void buttonX1_Click(object sender, EventArgs e)
         {
@@ -492,6 +561,10 @@ AS tmp(id int, subject varchar(200))";
             
             // 儲存對照
             SetSubjectFromDataGrid();
+
+            // 儲存畫面選項
+            SetUIConfig();
+
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Configure.Save();

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cboTagRank1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -56,6 +56,7 @@
             this.lnkDefault2 = new System.Windows.Forms.LinkLabel();
             this.cboUseTemplae = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSubjMapping)).BeginInit();
@@ -71,7 +72,7 @@
             this.groupPanel2.Controls.Add(this.cboTagRank2);
             this.groupPanel2.Controls.Add(this.labelX5);
             this.groupPanel2.DrawTitleBox = false;
-            this.groupPanel2.Location = new System.Drawing.Point(12, 285);
+            this.groupPanel2.Location = new System.Drawing.Point(12, 306);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.Size = new System.Drawing.Size(298, 99);
             // 
@@ -168,6 +169,7 @@
             this.groupPanel3.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel3.Controls.Add(this.labelX9);
             this.groupPanel3.Controls.Add(this.labelX7);
             this.groupPanel3.Controls.Add(this.dgSubjMapping);
             this.groupPanel3.Controls.Add(this.cbxSubjSelectAll);
@@ -178,7 +180,7 @@
             this.groupPanel3.DrawTitleBox = false;
             this.groupPanel3.Location = new System.Drawing.Point(12, 16);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(776, 250);
+            this.groupPanel3.Size = new System.Drawing.Size(776, 284);
             // 
             // 
             // 
@@ -223,9 +225,9 @@
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.Location = new System.Drawing.Point(300, 29);
             this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(454, 21);
+            this.labelX7.Size = new System.Drawing.Size(114, 21);
             this.labelX7.TabIndex = 18;
-            this.labelX7.Text = "回歸科目設定：(系統內科目名稱用+相連會做科目加權平均四捨五入至整數)";
+            this.labelX7.Text = "列印科目對照表：";
             // 
             // dgSubjMapping
             // 
@@ -234,14 +236,14 @@
             this.dgSubjMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSubject,
             this.colSysSubject});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgSubjMapping.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgSubjMapping.Location = new System.Drawing.Point(300, 56);
             this.dgSubjMapping.Name = "dgSubjMapping";
@@ -341,7 +343,7 @@
             this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(708, 399);
+            this.btnExit.Location = new System.Drawing.Point(708, 420);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -353,7 +355,7 @@
             // 
             this.lblMappingTemp.AutoSize = true;
             this.lblMappingTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lblMappingTemp.Location = new System.Drawing.Point(162, 402);
+            this.lblMappingTemp.Location = new System.Drawing.Point(162, 423);
             this.lblMappingTemp.Name = "lblMappingTemp";
             this.lblMappingTemp.Size = new System.Drawing.Size(112, 17);
             this.lblMappingTemp.TabIndex = 41;
@@ -365,7 +367,7 @@
             // 
             this.lnkUpload.AutoSize = true;
             this.lnkUpload.BackColor = System.Drawing.Color.Transparent;
-            this.lnkUpload.Location = new System.Drawing.Point(88, 402);
+            this.lnkUpload.Location = new System.Drawing.Point(88, 423);
             this.lnkUpload.Name = "lnkUpload";
             this.lnkUpload.Size = new System.Drawing.Size(60, 17);
             this.lnkUpload.TabIndex = 40;
@@ -377,7 +379,7 @@
             // 
             this.lnkDownload.AutoSize = true;
             this.lnkDownload.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDownload.Location = new System.Drawing.Point(21, 402);
+            this.lnkDownload.Location = new System.Drawing.Point(21, 423);
             this.lnkDownload.Name = "lnkDownload";
             this.lnkDownload.Size = new System.Drawing.Size(60, 17);
             this.lnkDownload.TabIndex = 39;
@@ -390,7 +392,7 @@
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.BackColor = System.Drawing.Color.Transparent;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(627, 399);
+            this.buttonX1.Location = new System.Drawing.Point(627, 420);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(75, 23);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -407,7 +409,7 @@
             // 
             this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(360, 328);
+            this.labelX2.Location = new System.Drawing.Point(360, 349);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(85, 21);
             this.labelX2.TabIndex = 44;
@@ -422,7 +424,7 @@
             // 
             this.labelX6.BackgroundStyle.Class = "";
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(360, 301);
+            this.labelX6.Location = new System.Drawing.Point(360, 322);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(235, 21);
             this.labelX6.TabIndex = 43;
@@ -435,7 +437,7 @@
             this.cbxScoreType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxScoreType.FormattingEnabled = true;
             this.cbxScoreType.ItemHeight = 19;
-            this.cbxScoreType.Location = new System.Drawing.Point(451, 326);
+            this.cbxScoreType.Location = new System.Drawing.Point(451, 347);
             this.cbxScoreType.Name = "cbxScoreType";
             this.cbxScoreType.Size = new System.Drawing.Size(181, 25);
             this.cbxScoreType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -445,7 +447,7 @@
             // 
             this.lnkDefault1.AutoSize = true;
             this.lnkDefault1.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDefault1.Location = new System.Drawing.Point(312, 402);
+            this.lnkDefault1.Location = new System.Drawing.Point(312, 423);
             this.lnkDefault1.Name = "lnkDefault1";
             this.lnkDefault1.Size = new System.Drawing.Size(86, 17);
             this.lnkDefault1.TabIndex = 46;
@@ -457,7 +459,7 @@
             // 
             this.lnkDefault2.AutoSize = true;
             this.lnkDefault2.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDefault2.Location = new System.Drawing.Point(404, 402);
+            this.lnkDefault2.Location = new System.Drawing.Point(404, 423);
             this.lnkDefault2.Name = "lnkDefault2";
             this.lnkDefault2.Size = new System.Drawing.Size(138, 17);
             this.lnkDefault2.TabIndex = 47;
@@ -472,7 +474,7 @@
             this.cboUseTemplae.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUseTemplae.FormattingEnabled = true;
             this.cboUseTemplae.ItemHeight = 19;
-            this.cboUseTemplae.Location = new System.Drawing.Point(451, 356);
+            this.cboUseTemplae.Location = new System.Drawing.Point(451, 377);
             this.cboUseTemplae.Name = "cboUseTemplae";
             this.cboUseTemplae.Size = new System.Drawing.Size(181, 25);
             this.cboUseTemplae.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -487,17 +489,32 @@
             // 
             this.labelX8.BackgroundStyle.Class = "";
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Location = new System.Drawing.Point(360, 358);
+            this.labelX8.Location = new System.Drawing.Point(360, 379);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(85, 21);
             this.labelX8.TabIndex = 48;
             this.labelX8.Text = "3.使用範本：";
             // 
+            // labelX9
+            // 
+            this.labelX9.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX9.BackgroundStyle.Class = "";
+            this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX9.Location = new System.Drawing.Point(9, 212);
+            this.labelX9.Name = "labelX9";
+            this.labelX9.Size = new System.Drawing.Size(752, 42);
+            this.labelX9.TabIndex = 19;
+            this.labelX9.Text = "列印科目對照表說明（若回歸科目超過一科時，於「系統內科目名稱」欄位中以「+」分隔多個科目，例如：「基礎生物+生物選修」）";
+            this.labelX9.WordWrap = true;
+            // 
             // StudentScoreReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 439);
+            this.ClientSize = new System.Drawing.Size(801, 455);
             this.Controls.Add(this.cboUseTemplae);
             this.Controls.Add(this.labelX8);
             this.Controls.Add(this.lnkDefault2);
@@ -555,5 +572,6 @@
         private System.Windows.Forms.LinkLabel lnkDefault2;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cboUseTemplae;
         private DevComponents.DotNetBar.LabelX labelX8;
+        private DevComponents.DotNetBar.LabelX labelX9;
     }
 }
