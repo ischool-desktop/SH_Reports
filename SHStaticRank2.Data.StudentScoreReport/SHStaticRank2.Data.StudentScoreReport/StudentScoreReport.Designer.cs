@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cboTagRank1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.cboTagRank2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.dgSubjMapping = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSysSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +54,6 @@
             this.cbxScoreType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.lnkDefault1 = new System.Windows.Forms.LinkLabel();
             this.lnkDefault2 = new System.Windows.Forms.LinkLabel();
-            this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSubjMapping)).BeginInit();
@@ -210,6 +210,21 @@
             this.groupPanel3.TabIndex = 34;
             this.groupPanel3.Text = "排名對象";
             // 
+            // labelX7
+            // 
+            this.labelX7.AutoSize = true;
+            this.labelX7.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX7.BackgroundStyle.Class = "";
+            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX7.Location = new System.Drawing.Point(300, 29);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(454, 21);
+            this.labelX7.TabIndex = 18;
+            this.labelX7.Text = "回歸科目設定：(系統內科目名稱用+相連會做科目加權平均四捨五入至整數)";
+            // 
             // dgSubjMapping
             // 
             this.dgSubjMapping.BackgroundColor = System.Drawing.Color.White;
@@ -217,14 +232,14 @@
             this.dgSubjMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSubject,
             this.colSysSubject});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgSubjMapping.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgSubjMapping.Location = new System.Drawing.Point(300, 56);
             this.dgSubjMapping.Name = "dgSubjMapping";
@@ -447,21 +462,6 @@
             this.lnkDefault2.TabStop = true;
             this.lnkDefault2.Text = "下載回歸科目預設範本";
             this.lnkDefault2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDefault2_LinkClicked);
-            // 
-            // labelX7
-            // 
-            this.labelX7.AutoSize = true;
-            this.labelX7.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX7.BackgroundStyle.Class = "";
-            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(300, 29);
-            this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(437, 21);
-            this.labelX7.TabIndex = 18;
-            this.labelX7.Text = "回歸科目設定：(系統內科目名稱用+代表做加權平均，例如：國文+作文)";
             // 
             // StudentScoreReport
             // 
