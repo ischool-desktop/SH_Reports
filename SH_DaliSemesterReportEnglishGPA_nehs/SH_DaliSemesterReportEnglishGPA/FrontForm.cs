@@ -223,7 +223,7 @@ namespace SH_DaliSemesterReportEnglishGPA_nehs
         {
             #region 讀取 Preference
 
-            config = K12.Data.School.Configuration["中華民國高雄市高中英文成績單"];
+            config = K12.Data.School.Configuration["實驗中學GPA英文成績單"];
             if (config != null)
             {
                 int no = 0;

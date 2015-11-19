@@ -203,7 +203,7 @@ namespace SH_DaliSemesterReportEnglishGPA_nehs
         {
             #region 儲存 Preference
 
-            ConfigData config = K12.Data.School.Configuration["中華民國高雄市高中英文成績單"];
+            ConfigData config = K12.Data.School.Configuration["實驗中學GPA英文成績單"];
             config["TemplateNumber"] = _useTemplateNumber.ToString();
             config["RetakeNumber"] = _useRetakeNumber.ToString();
 
