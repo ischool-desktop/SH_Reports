@@ -378,6 +378,9 @@ AS tmp(id int, subject varchar(200))";
         {
             try
             {
+                // 是否只顯示回歸
+                chkSubjMappingOnly.Checked = Configure.CheckExportSubjectMapping;
+                
                 if(!string.IsNullOrEmpty(Configure.UIConfigString))
                 {
                     XElement elmRoot = XElement.Parse(Configure.UIConfigString);
@@ -398,6 +401,15 @@ AS tmp(id int, subject varchar(200))";
 
                         if (elmRoot.Element("使用範本") != null)
                             cboUseTemplae.Text = elmRoot.Element("使用範本").Value;
+
+                        if (elmRoot.Element("只顯示回歸科目") != null)
+                        {
+                            bool tf;
+                            if(bool.TryParse(elmRoot.Element("只顯示回歸科目").Value,out tf))
+                            {
+                                chkSubjMappingOnly.Checked = tf;
+                            }
+                        }
 
                         // 勾選
                         if (elmRoot.Element("列印科目") != null)
@@ -436,6 +448,7 @@ AS tmp(id int, subject varchar(200))";
             elmRoot.SetElementValue("類別排名2", cboTagRank2.Text);
             elmRoot.SetElementValue("採計成績", cbxScoreType.Text);
             elmRoot.SetElementValue("使用範本", cboUseTemplae.Text);
+            elmRoot.SetElementValue("只顯示回歸科目", chkSubjMappingOnly.Checked.ToString());
             Configure.UIConfigString = elmRoot.ToString();
         }
 
@@ -562,9 +575,11 @@ AS tmp(id int, subject varchar(200))";
             // 儲存對照
             SetSubjectFromDataGrid();
 
+            // 是否只顯示回歸
+            Configure.CheckExportSubjectMapping = chkSubjMappingOnly.Checked;
+            
             // 儲存畫面選項
             SetUIConfig();
-
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Configure.Save();

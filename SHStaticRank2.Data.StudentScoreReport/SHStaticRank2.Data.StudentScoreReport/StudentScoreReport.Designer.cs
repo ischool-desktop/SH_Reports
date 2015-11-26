@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cboTagRank1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.cboTagRank2 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.chkSubjMappingOnly = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
             this.dgSubjMapping = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colSubject = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,7 +58,6 @@
             this.lnkDefault2 = new System.Windows.Forms.LinkLabel();
             this.cboUseTemplae = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
-            this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSubjMapping)).BeginInit();
@@ -169,6 +170,7 @@
             this.groupPanel3.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel3.Controls.Add(this.chkSubjMappingOnly);
             this.groupPanel3.Controls.Add(this.labelX9);
             this.groupPanel3.Controls.Add(this.labelX7);
             this.groupPanel3.Controls.Add(this.dgSubjMapping);
@@ -214,6 +216,36 @@
             this.groupPanel3.TabIndex = 34;
             this.groupPanel3.Text = "排名對象";
             // 
+            // chkSubjMappingOnly
+            // 
+            this.chkSubjMappingOnly.AutoSize = true;
+            // 
+            // 
+            // 
+            this.chkSubjMappingOnly.BackgroundStyle.Class = "";
+            this.chkSubjMappingOnly.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chkSubjMappingOnly.Location = new System.Drawing.Point(411, 28);
+            this.chkSubjMappingOnly.Name = "chkSubjMappingOnly";
+            this.chkSubjMappingOnly.Size = new System.Drawing.Size(187, 21);
+            this.chkSubjMappingOnly.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chkSubjMappingOnly.TabIndex = 20;
+            this.chkSubjMappingOnly.Text = "只產生科目對照表回歸科目";
+            // 
+            // labelX9
+            // 
+            this.labelX9.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX9.BackgroundStyle.Class = "";
+            this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX9.Location = new System.Drawing.Point(9, 212);
+            this.labelX9.Name = "labelX9";
+            this.labelX9.Size = new System.Drawing.Size(752, 42);
+            this.labelX9.TabIndex = 19;
+            this.labelX9.Text = "列印科目對照表說明（若回歸科目超過一科時，於「系統內科目名稱」欄位中以「+」分隔多個科目，例如：「基礎生物+生物選修」）";
+            this.labelX9.WordWrap = true;
+            // 
             // labelX7
             // 
             this.labelX7.AutoSize = true;
@@ -236,14 +268,14 @@
             this.dgSubjMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSubject,
             this.colSysSubject});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgSubjMapping.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgSubjMapping.Location = new System.Drawing.Point(300, 56);
             this.dgSubjMapping.Name = "dgSubjMapping";
@@ -495,21 +527,6 @@
             this.labelX8.TabIndex = 48;
             this.labelX8.Text = "3.使用範本：";
             // 
-            // labelX9
-            // 
-            this.labelX9.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX9.BackgroundStyle.Class = "";
-            this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX9.Location = new System.Drawing.Point(9, 212);
-            this.labelX9.Name = "labelX9";
-            this.labelX9.Size = new System.Drawing.Size(752, 42);
-            this.labelX9.TabIndex = 19;
-            this.labelX9.Text = "列印科目對照表說明（若回歸科目超過一科時，於「系統內科目名稱」欄位中以「+」分隔多個科目，例如：「基礎生物+生物選修」）";
-            this.labelX9.WordWrap = true;
-            // 
             // StudentScoreReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -573,5 +590,6 @@
         private DevComponents.DotNetBar.Controls.ComboBoxEx cboUseTemplae;
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.LabelX labelX9;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chkSubjMappingOnly;
     }
 }
