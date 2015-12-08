@@ -54,8 +54,6 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.cbxScoreType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.lnkDefault1 = new System.Windows.Forms.LinkLabel();
-            this.lnkDefault2 = new System.Windows.Forms.LinkLabel();
             this.cboUseTemplae = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2.SuspendLayout();
@@ -471,33 +469,9 @@
             this.cbxScoreType.ItemHeight = 19;
             this.cbxScoreType.Location = new System.Drawing.Point(451, 347);
             this.cbxScoreType.Name = "cbxScoreType";
-            this.cbxScoreType.Size = new System.Drawing.Size(181, 25);
+            this.cbxScoreType.Size = new System.Drawing.Size(251, 25);
             this.cbxScoreType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbxScoreType.TabIndex = 45;
-            // 
-            // lnkDefault1
-            // 
-            this.lnkDefault1.AutoSize = true;
-            this.lnkDefault1.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDefault1.Location = new System.Drawing.Point(312, 423);
-            this.lnkDefault1.Name = "lnkDefault1";
-            this.lnkDefault1.Size = new System.Drawing.Size(86, 17);
-            this.lnkDefault1.TabIndex = 46;
-            this.lnkDefault1.TabStop = true;
-            this.lnkDefault1.Text = "下載預設範本";
-            this.lnkDefault1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDefault1_LinkClicked);
-            // 
-            // lnkDefault2
-            // 
-            this.lnkDefault2.AutoSize = true;
-            this.lnkDefault2.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDefault2.Location = new System.Drawing.Point(404, 423);
-            this.lnkDefault2.Name = "lnkDefault2";
-            this.lnkDefault2.Size = new System.Drawing.Size(138, 17);
-            this.lnkDefault2.TabIndex = 47;
-            this.lnkDefault2.TabStop = true;
-            this.lnkDefault2.Text = "下載回歸科目預設範本";
-            this.lnkDefault2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDefault2_LinkClicked);
             // 
             // cboUseTemplae
             // 
@@ -508,7 +482,7 @@
             this.cboUseTemplae.ItemHeight = 19;
             this.cboUseTemplae.Location = new System.Drawing.Point(451, 377);
             this.cboUseTemplae.Name = "cboUseTemplae";
-            this.cboUseTemplae.Size = new System.Drawing.Size(181, 25);
+            this.cboUseTemplae.Size = new System.Drawing.Size(251, 25);
             this.cboUseTemplae.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboUseTemplae.TabIndex = 49;
             // 
@@ -534,8 +508,6 @@
             this.ClientSize = new System.Drawing.Size(801, 455);
             this.Controls.Add(this.cboUseTemplae);
             this.Controls.Add(this.labelX8);
-            this.Controls.Add(this.lnkDefault2);
-            this.Controls.Add(this.lnkDefault1);
             this.Controls.Add(this.cbxScoreType);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX6);
@@ -585,8 +557,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSubject;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSysSubject;
         private DevComponents.DotNetBar.LabelX labelX7;
-        private System.Windows.Forms.LinkLabel lnkDefault1;
-        private System.Windows.Forms.LinkLabel lnkDefault2;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cboUseTemplae;
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.LabelX labelX9;

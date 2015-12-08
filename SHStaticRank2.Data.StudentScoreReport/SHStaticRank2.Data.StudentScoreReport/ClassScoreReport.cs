@@ -20,7 +20,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
         private List<TagConfigRecord> _TagConfigRecords = new List<TagConfigRecord>();
         private FISCA.UDT.AccessHelper _AccessHelper = new FISCA.UDT.AccessHelper();
         List<string> SubjectNameList = new List<string>();
-        public Configure Configure { get; private set; }
+        public Configure _Configure { get; private set; }
         private Dictionary<string, int> _SpecialListViewItem = new Dictionary<string, int>();
 
         public ClassScoreReport()
@@ -30,9 +30,15 @@ namespace SHStaticRank2.Data.StudentScoreReport
             buttonX1.Enabled = false;
             _TagConfigRecords = K12.Data.TagConfig.SelectByCategory(TagCategory.Student);
             List<Configure> lc = _AccessHelper.Select<Configure>("Name = '班級歷年成績單'");
-            this.Configure = (lc.Count >= 0) ? lc[0] : new Configure() { Name = "班級歷年成績單" };
-            if (lc.Count >= 1)
-                this.Configure.Decode();
+            if (lc == null)
+                new Configure() { Name = "班級歷年成績單" };
+            
+            if(lc.Count > 0)
+            {
+                _Configure = lc[0];
+                _Configure.Decode();
+            }               
+
             #region 填入類別
 
             List<string> prefix = new List<string>();
@@ -140,87 +146,90 @@ AS tmp(id int, subject varchar(200))";
                 MsgBox.Show("最多只能選6科");
                 return;
             }
-            Configure.CalcGradeYear1 = false;
-            Configure.CalcGradeYear2 = false;
-            Configure.CalcGradeYear3 = true; //三年級
-            Configure.CalcGradeYear4 = false;
-            Configure.DoNotSaveIt = true;
-            Configure.計算學業成績排名 = true;
-            Configure.WithCalSemesterScoreRank = true;
+
+            if (_Configure == null)
+                _Configure = new Configure();
+
+            _Configure.CalcGradeYear1 = false;
+            _Configure.CalcGradeYear2 = false;
+            _Configure.CalcGradeYear3 = true; //三年級
+            _Configure.CalcGradeYear4 = false;
+            _Configure.DoNotSaveIt = true;
+            _Configure.計算學業成績排名 = true;
+            _Configure.WithCalSemesterScoreRank = true;
 
             if (cbxScoreType.Text == "擇優成績")
             {
-                Configure.use原始成績 = true;//原始成績
-                Configure.use補考成績 = true;
-                Configure.use重修成績 = true;
-                Configure.use手動調整成績 = true;
-                Configure.use學年調整成績 = true;
-                Configure.RankFilterUseScoreList.Add("原始成績");
-                Configure.RankFilterUseScoreList.Add("補考成績");
-                Configure.RankFilterUseScoreList.Add("重修成績");
-                Configure.RankFilterUseScoreList.Add("手動調整成績");
-                Configure.RankFilterUseScoreList.Add("學年調整成績");
+                _Configure.use原始成績 = true;//原始成績
+                _Configure.use補考成績 = true;
+                _Configure.use重修成績 = true;
+                _Configure.use手動調整成績 = true;
+                _Configure.use學年調整成績 = true;
+                _Configure.RankFilterUseScoreList.Add("原始成績");
+                _Configure.RankFilterUseScoreList.Add("補考成績");
+                _Configure.RankFilterUseScoreList.Add("重修成績");
+                _Configure.RankFilterUseScoreList.Add("手動調整成績");
+                _Configure.RankFilterUseScoreList.Add("學年調整成績");
             }
             else
             {
-                Configure.use原始成績 = true;//原始成績
-                Configure.use補考成績 = false;
-                Configure.use重修成績 = false;
-                Configure.use手動調整成績 = false;
-                Configure.use學年調整成績 = false;
-                Configure.RankFilterUseScoreList.Add("原始成績");
+                _Configure.use原始成績 = true;//原始成績
+                _Configure.use補考成績 = false;
+                _Configure.use重修成績 = false;
+                _Configure.use手動調整成績 = false;
+                _Configure.use學年調整成績 = false;
+                _Configure.RankFilterUseScoreList.Add("原始成績");
             }
 
             //foreach (string SubjectName in SubjectNameList)//所有科目
             foreach (ListViewItem lvi in lvwSubjectPri.CheckedItems)
             {
                 string SubjectName = lvi.Text;
-                Configure.useSubjectPrintList.Add(SubjectName);
-                Configure.useSubjecOrder1List.Add(SubjectName);
-                Configure.useSubjecOrder2List.Add(SubjectName);
+                _Configure.useSubjectPrintList.Add(SubjectName);
+                _Configure.useSubjecOrder1List.Add(SubjectName);
+                _Configure.useSubjecOrder2List.Add(SubjectName);
             }
-            Configure.Name = "班級歷年成績單";
-            Configure.SortGradeYear = "三年級";
-            Configure.useGradeSemesterList.Add("11");
-            Configure.useGradeSemesterList.Add("12");
-            Configure.useGradeSemesterList.Add("21");
-            Configure.useGradeSemesterList.Add("22");
-            Configure.RankFilterGradeSemeterList.Add("一上");
-            Configure.RankFilterGradeSemeterList.Add("一下");
-            Configure.RankFilterGradeSemeterList.Add("二上");
-            Configure.RankFilterGradeSemeterList.Add("二下");
-            Configure.useGradeSemesterList.Add("31");
-            Configure.RankFilterGradeSemeterList.Add("三上");
-            Configure.useGradeSemesterList.Add("32");
-            Configure.RankFilterGradeSemeterList.Add("三下");
-            Configure.CheckExportStudent = false;
-            Configure.NotRankTag = cboRankRilter.Text;
-            Configure.Rank1Tag = cboTagRank1.Text;
-            Configure.Rank2Tag = cboTagRank2.Text;
-            Configure.RankFilterTagName = cboRankRilter.Text;
-            //if (Configure.Template == null)
-            //    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+            _Configure.Name = "班級歷年成績單";
+            _Configure.SortGradeYear = "三年級";
+            _Configure.useGradeSemesterList.Add("11");
+            _Configure.useGradeSemesterList.Add("12");
+            _Configure.useGradeSemesterList.Add("21");
+            _Configure.useGradeSemesterList.Add("22");
+            _Configure.RankFilterGradeSemeterList.Add("一上");
+            _Configure.RankFilterGradeSemeterList.Add("一下");
+            _Configure.RankFilterGradeSemeterList.Add("二上");
+            _Configure.RankFilterGradeSemeterList.Add("二下");
+            _Configure.useGradeSemesterList.Add("31");
+            _Configure.RankFilterGradeSemeterList.Add("三上");
+            _Configure.useGradeSemesterList.Add("32");
+            _Configure.RankFilterGradeSemeterList.Add("三下");
+            _Configure.CheckExportStudent = false;
+            _Configure.NotRankTag = cboRankRilter.Text;
+            _Configure.Rank1Tag = cboTagRank1.Text;
+            _Configure.Rank2Tag = cboTagRank2.Text;
+            _Configure.RankFilterTagName = cboRankRilter.Text;
 
-            if (this.Configure.Template == null)
+            if (_Configure.Template == null)
             {
-                Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+                _Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
 
             }
             else
             {
                 //計算檔案大小
                 MemoryStream ms = new MemoryStream();
-                this.Configure.Template.Save(ms, SaveFormat.Doc);
+                _Configure.Template.Save(ms, SaveFormat.Doc);
                 byte[] bb = ms.ToArray();
 
                 double bbSize = (bb.Count() / 1024);
 
                 if (bbSize < 30)
-                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+                    _Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
              
             }
             DialogResult = System.Windows.Forms.DialogResult.OK;
-            Configure.Save();
+            _Configure.Encode();
+            _Configure.Save();
             this.Close();
         }
 
@@ -237,9 +246,9 @@ AS tmp(id int, subject varchar(200))";
 
         private void DownloadDefaultTemplate()
         {
-            if (this.Configure == null) return;
+            if (_Configure == null) return;
             #region 儲存檔案
-            string inputReportName = "多學期成績單樣板(" + this.Configure.Name + ")";
+            string inputReportName = "多學期成績單樣板(" + _Configure.Name + ")";
             string reportName = inputReportName;
 
             string path = Path.Combine(System.Windows.Forms.Application.StartupPath, "Reports");
@@ -262,24 +271,24 @@ AS tmp(id int, subject varchar(200))";
             }
             try
             {
-                if (this.Configure.Template == null)
+                if (_Configure.Template == null)
                 {
-                    Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+                    _Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
 
                 }
                 else
                 {
                     //計算檔案大小
                     MemoryStream ms = new MemoryStream();
-                    this.Configure.Template.Save(ms, SaveFormat.Doc);
+                    _Configure.Template.Save(ms, SaveFormat.Doc);
                     byte[] bb = ms.ToArray();
 
                     double bbSize = (bb.Count() / 1024);
 
                     if(bbSize<30)
-                        Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
+                        _Configure.Template = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
 
-                    this.Configure.Template.Save(path, SaveFormat.Doc);
+                    _Configure.Template.Save(path, SaveFormat.Doc);
                 }
 
                 System.Diagnostics.Process.Start(path);
@@ -318,7 +327,7 @@ AS tmp(id int, subject varchar(200))";
 
         private void UploadUserDefTemplate()
         {
-            if (Configure == null) return;
+            if (_Configure == null) return;
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "上傳樣板";
             dialog.Filter = "Word檔案 (*.doc)|*.doc|所有檔案 (*.*)|*.*";
@@ -326,17 +335,17 @@ AS tmp(id int, subject varchar(200))";
             {
                 try
                 {
-                    this.Configure.Template = new Aspose.Words.Document(dialog.FileName);                   
+                    _Configure.Template = new Aspose.Words.Document(dialog.FileName);                   
 
-                    List<string> fields = new List<string>(this.Configure.Template.MailMerge.GetFieldNames());
-                    this.Configure.SubjectLimit = 0;
-                    while (fields.Contains("科目名稱" + (this.Configure.SubjectLimit + 1)))
+                    List<string> fields = new List<string>(_Configure.Template.MailMerge.GetFieldNames());
+                    _Configure.SubjectLimit = 0;
+                    while (fields.Contains("科目名稱" + (_Configure.SubjectLimit + 1)))
                     {
-                        this.Configure.SubjectLimit++;
+                        _Configure.SubjectLimit++;
                     }
-                    Configure.Encode();
+                    _Configure.Encode();
 
-                    Configure.Save();
+                    _Configure.Save();
                     MsgBox.Show("上傳完成.");
                 }
                 catch

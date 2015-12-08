@@ -40,11 +40,11 @@ namespace SHStaticRank2.Data.StudentScoreReport
                 confClass.ShowDialog();
                 if (confClass.DialogResult == System.Windows.Forms.DialogResult.OK)
                 {                    
-                    CalcMutilSemeSubjectRank.Setup(confClass.Configure);
+                    CalcMutilSemeSubjectRank.Setup(confClass._Configure);
                     CalcMutilSemeSubjectRank.OneClassCompleted += delegate
                     {
 
-                        if ( confClass.Configure.Name=="班級歷年成績單" &&  confClass.Configure.CheckExportStudent == false && chkClass)
+                        if ( confClass._Configure.Name=="班級歷年成績單" &&  confClass._Configure.CheckExportStudent == false && chkClass)
                         {
 
                             DataTable students = CalcMutilSemeSubjectRank._table.Copy();
@@ -67,13 +67,13 @@ namespace SHStaticRank2.Data.StudentScoreReport
                             }
                             SingleClassMailMerge classm = new SingleClassMailMerge(classData, students);
                             Document doc;
-                            if (confClass.Configure.Template == null)
+                            if (confClass._Configure.Template == null)
                             {
                                 doc = new Document(new MemoryStream(Properties.Resources.高中部班級歷年成績單));
                             }
                             else
                             {
-                                doc = confClass.Configure.Template.Clone();
+                                doc = confClass._Configure.Template.Clone();
                             }
                             
                             doc.MailMerge.ExecuteWithRegions(classm);
