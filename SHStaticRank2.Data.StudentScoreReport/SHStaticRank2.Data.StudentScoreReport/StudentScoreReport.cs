@@ -705,10 +705,10 @@ AS tmp(id int, subject varchar(200))";
 
             // 使用非自訂範本切換但是不儲存
             if (cboUseTemplae.Text == _strItem4)
-                docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本));
+                docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__6));
             
             if(cboUseTemplae.Text==_strItem5)
-                docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本));
+                docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本_6));
 
             Configure.Template = docTemp;
 
@@ -747,7 +747,7 @@ AS tmp(id int, subject varchar(200))";
                     }
                 }
 
-                Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本));
+                Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__6));
                 docTemp.Save(path, SaveFormat.Doc);
                 System.Diagnostics.Process.Start(path);
             }
@@ -762,7 +762,7 @@ AS tmp(id int, subject varchar(200))";
                     try
                     {
 
-                        Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__範本));
+                        Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__6));
                         docTemp.Save(sd.FileName);
                     }
                     catch
@@ -801,7 +801,7 @@ AS tmp(id int, subject varchar(200))";
                     }
                 }
 
-                Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本));
+                Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本_6));
                 docTemp.Save(path, SaveFormat.Doc);
                 System.Diagnostics.Process.Start(path);
             }
@@ -816,7 +816,7 @@ AS tmp(id int, subject varchar(200))";
                     try
                     {
 
-                        Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本));
+                        Document docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本_6));
                         docTemp.Save(sd.FileName);
                     }
                     catch

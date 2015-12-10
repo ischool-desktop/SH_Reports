@@ -63,9 +63,9 @@ namespace SHStaticRank2.Data.StudentScoreReport.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] 多學期成績單樣板_學生個人歷年成績單__回歸科目範本 {
+        internal static byte[] 多學期成績單樣板_學生個人歷年成績單__6 {
             get {
-                object obj = ResourceManager.GetObject("多學期成績單樣板_學生個人歷年成績單__回歸科目範本", resourceCulture);
+                object obj = ResourceManager.GetObject("多學期成績單樣板_學生個人歷年成績單__6", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SHStaticRank2.Data.StudentScoreReport.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] 多學期成績單樣板_學生個人歷年成績單__範本 {
+        internal static byte[] 多學期成績單樣板_學生個人歷年成績單__回歸科目範本_6 {
             get {
-                object obj = ResourceManager.GetObject("多學期成績單樣板_學生個人歷年成績單__範本", resourceCulture);
+                object obj = ResourceManager.GetObject("多學期成績單樣板_學生個人歷年成績單__回歸科目範本_6", resourceCulture);
                 return ((byte[])(obj));
             }
         }

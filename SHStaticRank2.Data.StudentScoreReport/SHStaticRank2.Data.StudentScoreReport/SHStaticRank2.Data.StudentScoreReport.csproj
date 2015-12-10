@@ -209,6 +209,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\多學期成績單樣板%28學生個人歷年成績單%29-6.doc" />
+    <None Include="Resources\多學期成績單樣板%28學生個人歷年成績單%29-回歸科目範本-6.doc" />
     <None Include="Resources\多學期成績單樣板%28學生個人歷年成績單%29-回歸科目範本.doc" />
     <None Include="Resources\多學期成績單樣板%28學生個人歷年成績單%29-範本.doc" />
     <None Include="Resources\高中部歷年成績單_5學期.doc" />
