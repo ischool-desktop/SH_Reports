@@ -29,6 +29,9 @@ namespace SHStaticRank2.Data.StudentScoreReport
         string _strItem3 = "使用自訂範本(六學期成績)";
         string _strItem4 = "使用預設範本(六學期成績)";
         string _strItem5 = "使用預設回歸科目範本(六學期成績)";
+        string _strItem6 = "班級Word";
+        string _strItem7 = "大學繁星序號PDF";
+        string _strItem8 = "學生身分證號PDF";
 
         public StudentScoreReport()
         {
@@ -368,6 +371,12 @@ namespace SHStaticRank2.Data.StudentScoreReport
             cboUseTemplae.Text = _strItem1;
             cboUseTemplae.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            cboExportType.Items.Add(_strItem6);
+            cboExportType.Items.Add(_strItem7);
+            cboExportType.Items.Add(_strItem8);
+            cboExportType.Text = _strItem6;
+            cboExportType.DropDownStyle = ComboBoxStyle.DropDownList;
+
             cbxSubjSelectAll.Checked = false;
             FISCA.LogAgent.ApplicationLog.Log("成績", "計算", "計算學生多學期成績單。");            
             List<string> studIDList = new List<string>();
@@ -443,6 +452,9 @@ AS tmp(id int, subject varchar(200))";
                         if (elmRoot.Element("使用範本") != null)                            
                             cboUseTemplae.Text = elmRoot.Element("使用範本").Value;
 
+                        if (elmRoot.Element("產生檔案") != null)
+                            cboExportType.Text = elmRoot.Element("產生檔案").Value;
+
                         if (elmRoot.Element("只顯示回歸科目") != null)
                         {
                             bool tf;
@@ -489,6 +501,7 @@ AS tmp(id int, subject varchar(200))";
             elmRoot.SetElementValue("類別排名2", cboTagRank2.Text);
             elmRoot.SetElementValue("採計成績", cbxScoreType.Text);
             elmRoot.SetElementValue("使用範本", cboUseTemplae.Text);
+            elmRoot.SetElementValue("產生檔案", cboExportType.Text);
             elmRoot.SetElementValue("只顯示回歸科目", chkSubjMappingOnly.Checked.ToString());
             Configure.UIConfigString = elmRoot.ToString();
         }
@@ -577,6 +590,9 @@ AS tmp(id int, subject varchar(200))";
             }
             Configure.Name = "學生個人歷年成績單";
             Configure.SortGradeYear = "三年級";
+
+            Configure.CheckExportPDF = true;
+            Configure.CheckUseIDNumber = true;
 
             // 使用合併樣版
             Document docTemp = null;
@@ -711,6 +727,24 @@ AS tmp(id int, subject varchar(200))";
                 docTemp = new Document(new MemoryStream(Properties.Resources.多學期成績單樣板_學生個人歷年成績單__回歸科目範本_6));
 
             Configure.Template = docTemp;
+
+            // 班級Word
+            if(cboExportType.Text==_strItem6)            
+                Configure.CheckExportPDF = false;                
+            
+            // 序號 PDF
+            if(cboExportType.Text==_strItem7)
+            {
+                Configure.CheckExportPDF = true;
+                Configure.CheckUseIDNumber = false;
+            }
+
+            // 身分證號 PDF
+            if (cboExportType.Text == _strItem8)
+            {
+                Configure.CheckExportPDF = true;
+                Configure.CheckUseIDNumber = true;
+            }
 
             DialogResult = System.Windows.Forms.DialogResult.OK;
 

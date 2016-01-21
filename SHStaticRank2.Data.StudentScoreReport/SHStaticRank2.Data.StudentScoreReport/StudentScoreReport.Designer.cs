@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cboTagRank1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -56,6 +56,8 @@
             this.cbxScoreType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.cboUseTemplae = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.cboExportType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX10 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSubjMapping)).BeginInit();
@@ -266,14 +268,14 @@
             this.dgSubjMapping.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSubject,
             this.colSysSubject});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSubjMapping.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgSubjMapping.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgSubjMapping.Location = new System.Drawing.Point(300, 56);
             this.dgSubjMapping.Name = "dgSubjMapping";
@@ -373,7 +375,7 @@
             this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(708, 420);
+            this.btnExit.Location = new System.Drawing.Point(708, 450);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -385,7 +387,7 @@
             // 
             this.lblMappingTemp.AutoSize = true;
             this.lblMappingTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lblMappingTemp.Location = new System.Drawing.Point(162, 423);
+            this.lblMappingTemp.Location = new System.Drawing.Point(162, 453);
             this.lblMappingTemp.Name = "lblMappingTemp";
             this.lblMappingTemp.Size = new System.Drawing.Size(112, 17);
             this.lblMappingTemp.TabIndex = 41;
@@ -397,7 +399,7 @@
             // 
             this.lnkUpload.AutoSize = true;
             this.lnkUpload.BackColor = System.Drawing.Color.Transparent;
-            this.lnkUpload.Location = new System.Drawing.Point(88, 423);
+            this.lnkUpload.Location = new System.Drawing.Point(88, 453);
             this.lnkUpload.Name = "lnkUpload";
             this.lnkUpload.Size = new System.Drawing.Size(60, 17);
             this.lnkUpload.TabIndex = 40;
@@ -409,7 +411,7 @@
             // 
             this.lnkDownload.AutoSize = true;
             this.lnkDownload.BackColor = System.Drawing.Color.Transparent;
-            this.lnkDownload.Location = new System.Drawing.Point(21, 423);
+            this.lnkDownload.Location = new System.Drawing.Point(21, 453);
             this.lnkDownload.Name = "lnkDownload";
             this.lnkDownload.Size = new System.Drawing.Size(60, 17);
             this.lnkDownload.TabIndex = 39;
@@ -422,7 +424,7 @@
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.BackColor = System.Drawing.Color.Transparent;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(627, 420);
+            this.buttonX1.Location = new System.Drawing.Point(627, 450);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(75, 23);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -501,11 +503,41 @@
             this.labelX8.TabIndex = 48;
             this.labelX8.Text = "3.使用範本：";
             // 
+            // cboExportType
+            // 
+            this.cboExportType.DisplayMember = "Text";
+            this.cboExportType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboExportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboExportType.FormattingEnabled = true;
+            this.cboExportType.ItemHeight = 19;
+            this.cboExportType.Location = new System.Drawing.Point(451, 410);
+            this.cboExportType.Name = "cboExportType";
+            this.cboExportType.Size = new System.Drawing.Size(251, 25);
+            this.cboExportType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cboExportType.TabIndex = 51;
+            // 
+            // labelX10
+            // 
+            this.labelX10.AutoSize = true;
+            this.labelX10.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX10.BackgroundStyle.Class = "";
+            this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX10.Location = new System.Drawing.Point(360, 412);
+            this.labelX10.Name = "labelX10";
+            this.labelX10.Size = new System.Drawing.Size(85, 21);
+            this.labelX10.TabIndex = 50;
+            this.labelX10.Text = "4.產生檔案：";
+            // 
             // StudentScoreReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 455);
+            this.ClientSize = new System.Drawing.Size(801, 484);
+            this.Controls.Add(this.cboExportType);
+            this.Controls.Add(this.labelX10);
             this.Controls.Add(this.cboUseTemplae);
             this.Controls.Add(this.labelX8);
             this.Controls.Add(this.cbxScoreType);
@@ -561,5 +593,7 @@
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.LabelX labelX9;
         private DevComponents.DotNetBar.Controls.CheckBoxX chkSubjMappingOnly;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cboExportType;
+        private DevComponents.DotNetBar.LabelX labelX10;
     }
 }
