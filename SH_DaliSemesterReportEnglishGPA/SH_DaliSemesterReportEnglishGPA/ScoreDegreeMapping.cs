@@ -77,9 +77,16 @@ namespace SH_DaliSemesterReportEnglishGPA
                 {
                     cell.ErrorText = string.Empty;
 
-                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
-                        cell.ErrorText = "必填。";
-
+                    if (cell.ColumnIndex != 4)
+                    {
+                        if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                            cell.ErrorText = "必填。";
+                    }
+                    else 
+                    {
+                        cell.Value = rows.Cells[0].Value + "≤分數<" + rows.Cells[1].Value;                                        
+                    }
+                    
                     if (cell.ColumnIndex == 0 || cell.ColumnIndex == 1)
                     {
                         if (cell.Value != null)
@@ -186,6 +193,8 @@ namespace SH_DaliSemesterReportEnglishGPA
                 list.Add(udts[i].Degree);
                 list.Add(udts[i].GPA);
 
+                list.Add(udts[i].MinScore + "≤分數<" + udts[i].MaxScore);
+
                 dicOriginalScoreDegreeMappings.Add(udts[i].UID, udts[i]);
 
                 int idx = this.dgvData.Rows.Add(list.ToArray());
@@ -270,6 +279,153 @@ namespace SH_DaliSemesterReportEnglishGPA
             {
                 this.FillData();
             }
+        }
+
+
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            dgvData.Rows.Clear();
+
+
+            #region 拚預設GPA 等第設定
+ 
+
+            DataGridViewRow row1 = new DataGridViewRow();
+
+            row1.CreateCells(dgvData);
+
+            row1.Cells[0].Value = "90";
+            row1.Cells[1].Value = "100";
+            row1.Cells[2].Value = "A+";
+            row1.Cells[3].Value = "4.3";
+            row1.Cells[4].Value = "90≤分數<100";
+            
+            DataGridViewRow row2 = new DataGridViewRow();
+
+            row2.CreateCells(dgvData);
+
+            row2.Cells[0].Value = "85";
+            row2.Cells[1].Value = "90";
+            row2.Cells[2].Value = "A";
+            row2.Cells[3].Value = "4.0";
+            row2.Cells[4].Value = "85≤分數<90";
+
+            DataGridViewRow row3 = new DataGridViewRow();
+
+            row3.CreateCells(dgvData);
+
+            row3.Cells[0].Value = "80";
+            row3.Cells[1].Value = "85";
+            row3.Cells[2].Value = "A-";
+            row3.Cells[3].Value = "3.7";
+            row3.Cells[4].Value = "80≤分數<85";
+
+            DataGridViewRow row4 = new DataGridViewRow();
+
+            row4.CreateCells(dgvData);
+
+            row4.Cells[0].Value = "77";
+            row4.Cells[1].Value = "80";
+            row4.Cells[2].Value = "B+";
+            row4.Cells[3].Value = "3.3";
+            row4.Cells[4].Value = "77≤分數<80";
+
+            DataGridViewRow row5 = new DataGridViewRow();
+
+            row5.CreateCells(dgvData);
+
+            row5.Cells[0].Value = "73";
+            row5.Cells[1].Value = "77";
+            row5.Cells[2].Value = "B";
+            row5.Cells[3].Value = "3.0";
+            row5.Cells[4].Value = "73≤分數<77";
+
+            DataGridViewRow row6 = new DataGridViewRow();
+
+            row6.CreateCells(dgvData);
+
+            row6.Cells[0].Value = "70";
+            row6.Cells[1].Value = "73";
+            row6.Cells[2].Value = "B-";
+            row6.Cells[3].Value = "2.7";
+            row6.Cells[4].Value = "70≤分數<73";
+
+            DataGridViewRow row7 = new DataGridViewRow();
+
+            row7.CreateCells(dgvData);
+
+            row7.Cells[0].Value = "67";
+            row7.Cells[1].Value = "70";
+            row7.Cells[2].Value = "C+";
+            row7.Cells[3].Value = "2.3";
+            row7.Cells[4].Value = "67≤分數<70";
+
+            DataGridViewRow row8 = new DataGridViewRow();
+
+            row8.CreateCells(dgvData);
+
+            row8.Cells[0].Value = "63";
+            row8.Cells[1].Value = "67";
+            row8.Cells[2].Value = "C";
+            row8.Cells[3].Value = "2.0";
+            row8.Cells[4].Value = "63≤分數<67";
+
+            DataGridViewRow row9 = new DataGridViewRow();
+
+            row9.CreateCells(dgvData);
+
+            row9.Cells[0].Value = "60";
+            row9.Cells[1].Value = "63";
+            row9.Cells[2].Value = "C-";
+            row9.Cells[3].Value = "1.7";
+            row9.Cells[4].Value = "60≤分數<63";
+
+            DataGridViewRow row10 = new DataGridViewRow();
+
+            row10.CreateCells(dgvData);
+
+            row10.Cells[0].Value = "50";
+            row10.Cells[1].Value = "60";
+            row10.Cells[2].Value = "D";
+            row10.Cells[3].Value = "1.0";
+            row10.Cells[4].Value = "50≤分數<60";
+
+            DataGridViewRow row11 = new DataGridViewRow();
+
+            row11.CreateCells(dgvData);
+
+            row11.Cells[0].Value = "1";
+            row11.Cells[1].Value = "50";
+            row11.Cells[2].Value = "E";
+            row11.Cells[3].Value = "0";
+            row11.Cells[4].Value = "1≤分數<50";
+
+            DataGridViewRow row12 = new DataGridViewRow();
+
+            row12.CreateCells(dgvData);
+
+            row12.Cells[0].Value = "0";
+            row12.Cells[1].Value = "1";
+            row12.Cells[2].Value = "X";
+            row12.Cells[3].Value = "0";
+            row12.Cells[4].Value = "0≤分數<1";
+
+            #endregion
+
+            dgvData.Rows.Add(row12);
+            dgvData.Rows.Add(row11);
+            dgvData.Rows.Add(row10);
+            dgvData.Rows.Add(row9);
+            dgvData.Rows.Add(row8);
+            dgvData.Rows.Add(row7);
+            dgvData.Rows.Add(row6);
+            dgvData.Rows.Add(row5);
+            dgvData.Rows.Add(row4);
+            dgvData.Rows.Add(row3);
+            dgvData.Rows.Add(row2);
+            dgvData.Rows.Add(row1);
+                                                
         }
     }
 }

@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvData = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Exit = new DevComponents.DotNetBar.ButtonX();
             this.Save = new DevComponents.DotNetBar.ButtonX();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.MinScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ScoreMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Degree = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGPA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ScoreRange = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,21 +53,22 @@
             this.MinScore,
             this.ScoreMax,
             this.Degree,
-            this.colGPA});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colGPA,
+            this.ScoreRange});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvData.Location = new System.Drawing.Point(12, 12);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersWidth = 25;
             this.dgvData.RowTemplate.Height = 24;
-            this.dgvData.Size = new System.Drawing.Size(306, 312);
+            this.dgvData.Size = new System.Drawing.Size(485, 184);
             this.dgvData.TabIndex = 0;
             // 
             // Exit
@@ -74,7 +77,7 @@
             this.Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Exit.BackColor = System.Drawing.Color.Transparent;
             this.Exit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.Exit.Location = new System.Drawing.Point(243, 334);
+            this.Exit.Location = new System.Drawing.Point(422, 206);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(75, 23);
             this.Exit.TabIndex = 22;
@@ -87,12 +90,25 @@
             this.Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Save.BackColor = System.Drawing.Color.Transparent;
             this.Save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.Save.Location = new System.Drawing.Point(160, 334);
+            this.Save.Location = new System.Drawing.Point(339, 206);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 23);
             this.Save.TabIndex = 21;
             this.Save.Text = "設定";
             this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabel1.Location = new System.Drawing.Point(29, 206);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(113, 17);
+            this.linkLabel1.TabIndex = 23;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "載入預設等第GPA";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // MinScore
             // 
@@ -110,9 +126,10 @@
             // 
             // Degree
             // 
-            this.Degree.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Degree.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Degree.HeaderText = "等第";
             this.Degree.Name = "Degree";
+            this.Degree.Width = 59;
             // 
             // colGPA
             // 
@@ -120,11 +137,19 @@
             this.colGPA.Name = "colGPA";
             this.colGPA.Width = 70;
             // 
+            // ScoreRange
+            // 
+            this.ScoreRange.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ScoreRange.HeaderText = "區間範圍";
+            this.ScoreRange.Name = "ScoreRange";
+            this.ScoreRange.ReadOnly = true;
+            // 
             // ScoreDegreeMapping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 363);
+            this.ClientSize = new System.Drawing.Size(510, 235);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.dgvData);
@@ -133,6 +158,7 @@
             this.Text = "成績等第GPA對照";
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -141,10 +167,12 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgvData;
         private DevComponents.DotNetBar.ButtonX Exit;
         private DevComponents.DotNetBar.ButtonX Save;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn MinScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScoreMax;
         private System.Windows.Forms.DataGridViewTextBoxColumn Degree;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGPA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ScoreRange;
 
     }
 }
