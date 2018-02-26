@@ -388,8 +388,13 @@ namespace SH_StudentRecordReport
                 _text3 = folder.SelectedPath;
             }
 
-    
-            SavePreference();
+            //2018/2/26 穎驊註解，因應實驗客服:https://ischool.zendesk.com/agent/tickets/5785
+            // 發現 本專案功能之Config  select * from list WHERE name ='2014高中成績證明書'  其中的cotent 欄位，有一項目會有
+            // 每重開系統存一次>> \  符號，就會double的問題，若使用者反覆操作多次，則會超出資料位數上限造成當機
+            // 似乎只有>> \  反斜線 會有每一次使用功能後 會有double 的現象， 估計是再sever內遠端處理時會有 跳脫字元，自動會每一個 \ 前，再補一個\ 符號，造成每次都會double 的問題。
+            // 目前與恩正討論的做法，是減少本專案 Config 自動儲存的時機，因為本功能的Config 是相對變動少的
+            // 若使用者真正需要 更動，可以再到設定內調整。
+            //SavePreference();
 
             if (Directory.Exists(_text3))
             {
@@ -403,7 +408,13 @@ namespace SH_StudentRecordReport
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            SavePreference();
+            //2018/2/26 穎驊註解，因應實驗客服:https://ischool.zendesk.com/agent/tickets/5785
+            // 發現 本專案功能之Config  select * from list WHERE name ='2014高中成績證明書'  其中的cotent 欄位，有一項目會有
+            // 每重開系統存一次>> \  符號，就會double的問題，若使用者反覆操作多次，則會超出資料位數上限造成當機
+            // 似乎只有>> \  反斜線 會有每一次使用功能後 會有double 的現象， 估計是再sever內遠端處理時會有 跳脫字元，自動會每一個 \ 前，再補一個\ 符號，造成每次都會double 的問題。
+            // 目前與恩正討論的做法，是減少本專案 Config 自動儲存的時機，因為本功能的Config 是相對變動少的
+            // 若使用者真正需要 更動，可以再到設定內調整。
+            //SavePreference();
 
             TemplateConfigForm form = new TemplateConfigForm(
                 _useTemplateNumber,
