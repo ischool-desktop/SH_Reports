@@ -17,7 +17,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
         public static void Main()
         {
 
-            var button = FISCA.Presentation.MotherForm.RibbonBarItems["教務作業", "批次作業/檢視"]["成績作業"]["計算固定排名(測試版)"]["計算多學期成績固定排名(學生個人歷年成績單)"];
+            var button = FISCA.Presentation.MotherForm.RibbonBarItems["教務作業", "批次作業/檢視"]["成績作業"]["計算固定排名"]["計算多學期成績固定排名(學生個人歷年成績單)"];
             button.Enable = FISCA.Permission.UserAcl.Current["SHSchool.SHStaticRank2.Data"].Executable;
             button.Click += delegate
             {
@@ -30,7 +30,7 @@ namespace SHStaticRank2.Data.StudentScoreReport
             };
 
 
-            var buttonClass = FISCA.Presentation.MotherForm.RibbonBarItems["教務作業", "批次作業/檢視"]["成績作業"]["計算固定排名(測試版)"]["計算多學期成績固定排名(班級歷年成績單)"];
+            var buttonClass = FISCA.Presentation.MotherForm.RibbonBarItems["教務作業", "批次作業/檢視"]["成績作業"]["計算固定排名"]["計算多學期成績固定排名(班級歷年成績單)"];
             buttonClass.Enable = FISCA.Permission.UserAcl.Current["SHSchool.SHStaticRank2.Data"].Executable;
             
             buttonClass.Click += delegate
